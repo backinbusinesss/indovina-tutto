@@ -83,7 +83,14 @@ export function AnswerGrid({ question, hidden, chosen, revealed, onAnswer }: Ans
                 st === 'dim' && 'border-transparent',
               )}
             >
-              {o.media && <img src={assetUrl(o.media.src)} alt="" className="size-full object-cover" draggable={false} />}
+              {o.media && (
+                <img
+                  src={assetUrl(o.media.src)}
+                  alt=""
+                  className={cx('size-full', o.media.kind === 'flag' ? 'object-cover' : 'object-contain p-4 text-[#1a1916]')}
+                  draggable={false}
+                />
+              )}
               <span className="absolute top-1.5 left-1.5 grid size-6 place-items-center rounded-lg bg-black/55 text-xs font-bold text-white">
                 {LETTERS[o.id]}
               </span>

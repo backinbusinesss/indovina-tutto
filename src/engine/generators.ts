@@ -97,7 +97,21 @@ export function generateCapitalQuestions(): QuestionDef[] {
 }
 
 export function generateShapeQuestions(): QuestionDef[] {
-  return COUNTRIES.filter((c) => c.shape).map((c) => {
+  const withShape = COUNTRIES.filter((c) => c.shape)
+  const shape = (o: Country, alt: string): Media => ({ kind: 'shape', src: `shapes/${code(o)}.svg`, alt })
+  const pick = withShape.map((c): QuestionDef => {
+    const id = `sagome:pick:${c.iso2}`
+    return {
+      id,
+      category: 'sagome',
+      difficulty: c.fame,
+      prompt: `Qual è la sagoma ${ofCountry(c)}?`,
+      answer: { label: c.name, media: shape(c, 'Sagoma') },
+      distractors: pickDistractors(id, c.name, withShape, (o) => o.name, (o) => o.region === c.region && o !== c, (o) => ({ label: o.name, media: shape(o, 'Sagoma') })),
+      layout: 'images',
+    }
+  })
+  return [...pick, ...withShape.map((c): QuestionDef => {
     const id = `sagome:img:${c.iso2}`
     return {
       id,
@@ -109,11 +123,24 @@ export function generateShapeQuestions(): QuestionDef[] {
       distractors: pickDistractors(id, c.name, COUNTRIES, (o) => o.name, (o) => o.region === c.region && o !== c),
       layout: 'text',
     }
-  })
+  })]
 }
 
 export function generateLogoQuestions(): QuestionDef[] {
-  return LOGOS.map((l) => {
+  const logo = (o: (typeof LOGOS)[number], alt: string): Media => ({ kind: 'logo', src: `logos/${o.slug}.svg`, alt })
+  const pick = LOGOS.map((l): QuestionDef => {
+    const id = `loghi:pick:${l.slug}`
+    return {
+      id,
+      category: 'loghi',
+      difficulty: l.fame,
+      prompt: `Qual è il logo di ${l.name}?`,
+      answer: { label: l.name, media: logo(l, 'Logo') },
+      distractors: pickDistractors(id, l.name, LOGOS, (o) => o.name, (o) => o.sector === l.sector && o !== l, (o) => ({ label: o.name, media: logo(o, 'Logo') })),
+      layout: 'images',
+    }
+  })
+  return [...pick, ...LOGOS.map((l): QuestionDef => {
     const id = `loghi:img:${l.slug}`
     return {
       id,
@@ -125,7 +152,7 @@ export function generateLogoQuestions(): QuestionDef[] {
       distractors: pickDistractors(id, l.name, LOGOS, (o) => o.name, (o) => o.sector === l.sector && o !== l),
       layout: 'text',
     }
-  })
+  })]
 }
 
 const IN_CONTINENT: Record<Continent, string> = {
@@ -136,9 +163,20 @@ const IN_CONTINENT: Record<Continent, string> = {
   Oceania: 'in Oceania',
 }
 
+const CONTINENTS: Continent[] = ['Europa', 'Asia', 'Africa', 'America', 'Oceania']
+
 export function generateContinentQuestions(): QuestionDef[] {
   const pool = COUNTRIES.filter((c) => !c.transcontinental)
-  return pool.map((c) => {
+  const where = pool.map((c): QuestionDef => ({
+    id: `geografia:where:${c.iso2}`,
+    category: 'geografia',
+    difficulty: c.fame,
+    prompt: `In quale continente si trova ${c.name}?`,
+    answer: { label: c.continent },
+    distractors: CONTINENTS.filter((x) => x !== c.continent).map((label) => ({ label })),
+    layout: 'text',
+  }))
+  return [...where, ...pool.map((c): QuestionDef => {
     const id = `geografia:cont:${c.iso2}`
     const others = pool.filter((o) => o.continent !== c.continent)
     return {
@@ -151,7 +189,7 @@ export function generateContinentQuestions(): QuestionDef[] {
       distractors: pickDistractors(id, c.name, others, (o) => o.name, (o) => o.fame === c.fame),
       layout: 'text',
     }
-  })
+  })]
 }
 
 export function generateCurrencyLanguageQuestions(): QuestionDef[] {
@@ -181,5 +219,19 @@ export function generateCurrencyLanguageQuestions(): QuestionDef[] {
       layout: 'text',
     }
   })
-  return [...currency, ...language]
+  const uses = new Map<string, number>()
+  for (const c of COUNTRIES) uses.set(c.currency, (uses.get(c.currency) ?? 0) + 1)
+  const reverse = COUNTRIES.filter((c) => uses.get(c.currency) === 1).map((c): QuestionDef => {
+    const id = `valute:rev:${c.iso2}`
+    return {
+      id,
+      category: 'valute',
+      difficulty: c.fame,
+      prompt: `Di quale paese è la valuta «${c.currency}»?`,
+      answer: { label: c.name },
+      distractors: pickDistractors(id, c.name, COUNTRIES, (o) => o.name, (o) => o.region === c.region && o !== c),
+      layout: 'text',
+    }
+  })
+  return [...currency, ...language, ...reverse]
 }

@@ -18,6 +18,13 @@ import {
   Shuffle,
   Trophy,
   FlaskConical,
+  Goal,
+  Zap,
+  Lightbulb,
+  Languages,
+  Calculator,
+  Tv,
+  Users,
   UtensilsCrossed,
   Waves,
 } from 'lucide-react'
@@ -45,6 +52,13 @@ const ICONS: Record<string, LucideIcon> = {
   Trophy,
   Palette,
   Music,
+  Goal,
+  Zap,
+  Lightbulb,
+  Languages,
+  Calculator,
+  Tv,
+  Users,
 }
 
 export const MIX = { name: 'Mix Tutto', color: '#4757EC' }

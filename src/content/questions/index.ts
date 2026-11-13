@@ -1,6 +1,13 @@
 import type { QuestionDef } from '@/engine/types'
 import { QUESTIONS as animali } from './animali'
 import { QUESTIONS as arte } from './arte'
+import { QUESTIONS as calcio } from './calcio'
+import { QUESTIONS as invenzioni } from './invenzioni'
+import { QUESTIONS as lingua } from './lingua'
+import { QUESTIONS as matematica } from './matematica'
+import { QUESTIONS as mitologia } from './mitologia'
+import { QUESTIONS as personaggi } from './personaggi'
+import { QUESTIONS as tv } from './tv'
 import { QUESTIONS as cucina } from './cucina'
 import { QUESTIONS as musica } from './musica'
 import { QUESTIONS as scienza } from './scienza'
@@ -15,4 +22,4 @@ import { QUESTIONS as monti } from './monti'
 import { QUESTIONS as monumenti } from './monumenti'
 
 /** Domande scritte a mano (fiumi, monti, laghi, geografia, monumenti, cucina, italia). */
-export const HANDWRITTEN: readonly QuestionDef[] = [...fiumi, ...monti, ...laghi, ...geografia, ...monumenti, ...cucina, ...italia, ...animali, ...storia, ...scienza, ...spazio, ...sport, ...arte, ...musica]
+export const HANDWRITTEN: readonly QuestionDef[] = [...fiumi, ...monti, ...laghi, ...geografia, ...monumenti, ...cucina, ...italia, ...animali, ...storia, ...scienza, ...spazio, ...sport, ...arte, ...musica, ...calcio, ...mitologia, ...invenzioni, ...lingua, ...matematica, ...tv, ...personaggi]

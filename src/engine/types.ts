@@ -18,6 +18,13 @@ export type CategoryId =
   | 'sport'
   | 'arte'
   | 'musica'
+  | 'calcio'
+  | 'mitologia'
+  | 'invenzioni'
+  | 'lingua'
+  | 'matematica'
+  | 'tv'
+  | 'personaggi'
 
 export type Source = CategoryId | 'mix'
 export type Difficulty = 1 | 2 | 3

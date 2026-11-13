@@ -50,7 +50,7 @@ describe('domande generate', () => {
     expect(all.bandiere.length).toBeGreaterThanOrEqual(390)
     expect(all.capitali.length).toBeGreaterThanOrEqual(384)
     expect(all.sagome.length).toBeGreaterThanOrEqual(150)
-    expect(all.loghi.length).toBeGreaterThanOrEqual(120)
+    expect(all.loghi.length).toBeGreaterThanOrEqual(285)
     expect(all.valute.length).toBeGreaterThanOrEqual(120)
     expect(all.geografia.length).toBeGreaterThanOrEqual(110)
   })
@@ -94,10 +94,31 @@ describe('domande generate', () => {
 
   it('i distrattori dei continenti sono di altri continenti', () => {
     const byName = new Map(COUNTRIES.map((c) => [c.name, c]))
-    for (const d of all.geografia) {
+    for (const d of all.geografia.filter((x) => x.id.startsWith('geografia:cont:'))) {
       const cont = byName.get(d.answer.label)!.continent
       for (const x of d.distractors) expect(byName.get(x.label)!.continent, d.id).not.toBe(cont)
     }
+  })
+
+  it('nuovi tipi: loghi e sagome da scegliere come immagini', () => {
+    const logoPick = all.loghi.filter((d) => d.id.startsWith('loghi:pick:'))
+    const shapePick = all.sagome.filter((d) => d.id.startsWith('sagome:pick:'))
+    expect(logoPick.length).toBeGreaterThanOrEqual(140)
+    expect(shapePick.length).toBeGreaterThanOrEqual(150)
+    for (const d of [...logoPick, ...shapePick]) {
+      expect(d.layout).toBe('images')
+      expect(d.answer.media).toBeDefined()
+      for (const x of d.distractors) expect(x.media).toBeDefined()
+    }
+  })
+
+  it('nuovi tipi: valuta → paese e continente di un paese', () => {
+    const rev = all.valute.filter((d) => d.id.startsWith('valute:rev:'))
+    expect(rev.length).toBeGreaterThanOrEqual(80)
+    for (const d of rev) expect(d.prompt, d.id).toMatch(/^Di quale paese è la valuta «.+»?$/)
+    const where = all.geografia.filter((d) => d.id.startsWith('geografia:where:'))
+    expect(where.length).toBeGreaterThanOrEqual(150)
+    for (const d of where) expect(['Europa', 'Asia', 'Africa', 'America', 'Oceania']).toContain(d.answer.label)
   })
 
   it('le bandiere da scegliere sono mostrate come immagini', () => {

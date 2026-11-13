@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import { QUESTIONS as animali } from '@/content/questions/animali'
 import { QUESTIONS as arte } from '@/content/questions/arte'
+import { QUESTIONS as calcio } from '@/content/questions/calcio'
+import { QUESTIONS as invenzioni } from '@/content/questions/invenzioni'
+import { QUESTIONS as lingua } from '@/content/questions/lingua'
+import { QUESTIONS as matematica } from '@/content/questions/matematica'
+import { QUESTIONS as mitologia } from '@/content/questions/mitologia'
+import { QUESTIONS as personaggi } from '@/content/questions/personaggi'
+import { QUESTIONS as tv } from '@/content/questions/tv'
 import { QUESTIONS as cucina } from '@/content/questions/cucina'
 import { QUESTIONS as musica } from '@/content/questions/musica'
 import { QUESTIONS as scienza } from '@/content/questions/scienza'
@@ -31,6 +38,13 @@ const files: [string, readonly QuestionDef[], number][] = [
   ['sport', sport, 40],
   ['arte', arte, 40],
   ['musica', musica, 40],
+  ['calcio', calcio, 40],
+  ['mitologia', mitologia, 40],
+  ['invenzioni', invenzioni, 40],
+  ['lingua', lingua, 40],
+  ['matematica', matematica, 40],
+  ['tv', tv, 40],
+  ['personaggi', personaggi, 40],
 ]
 
 describe.each(files)('domande scritte a mano: %s', (category, questions, min) => {
@@ -80,7 +94,7 @@ describe('totali', () => {
     expect(getBank('geografia').length).toBeGreaterThanOrEqual(150)
   })
 
-  it('in tutto almeno 2.300 domande', () => {
-    expect(getAllDefs().length).toBeGreaterThanOrEqual(2300)
+  it('in tutto almeno 3.200 domande', () => {
+    expect(getAllDefs().length).toBeGreaterThanOrEqual(3200)
   })
 })
