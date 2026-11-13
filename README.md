@@ -1,6 +1,6 @@
 # Indovina Tutto
 
-Il quiz su tutto di **carlarcade**: bandiere, capitali, sagome dei paesi, loghi, animali, storia, scienza, spazio, sport, arte, musica e cinema, geografia, fiumi, monti, laghi, monumenti, valute, cucina e Italia. Oltre 2.500 domande in 19 categorie, con streak, gemme, negozio, video premiati e sfida del giorno.
+Il quiz su tutto di **carlarcade**: bandiere, capitali, sagome dei paesi, loghi, animali, storia, scienza, spazio, sport, arte, musica e cinema, geografia, fiumi, monti, laghi, monumenti, valute, cucina e Italia. Oltre 2.400 domande in 19 categorie, con streak, gemme, negozio, video premiati e sfida del giorno.
 
 - Sito: `/` · App: `/app/` (installabile, funziona offline)
 - Online: https://backinbusinesss.github.io/indovina-tutto/
