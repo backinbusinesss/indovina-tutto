@@ -36,8 +36,14 @@ export const CATEGORIES: readonly CategoryMeta[] = [
   { id: 'matematica', name: 'Matematica e logica', tagline: 'Calcoli, numeri e rompicapi', icon: 'Calculator', color: '#64748B', example: 'Quanto fa 7 × 8?' },
   { id: 'tv', name: 'TV, cartoni e fumetti', tagline: 'Da Topolino a Stranger Things', icon: 'Tv', color: '#F43F5E', example: 'Quale gatto arancione adora le lasagne?' },
   { id: 'personaggi', name: 'Personaggi famosi', tagline: 'Chi ha fatto la storia, ieri e oggi', icon: 'Users', color: '#8B5CF6', example: 'Chi ha fondato la Ferrari?' },
+  { id: 'natura', name: 'Natura e ambiente', tagline: 'Piante, clima, rocce e venti', icon: 'Leaf', color: '#16A34A', example: 'Da quale albero cadono le ghiande?' },
+  { id: 'motori', name: 'Motori', tagline: 'Auto, moto, piloti e circuiti', icon: 'Car', color: '#DC2626', example: 'In quale cittadina ha sede la Ferrari?' },
+  { id: 'videogiochi', name: 'Videogiochi', tagline: 'Da Pong a Fortnite', icon: 'Gamepad2', color: '#7C3AED', example: 'Chi ha creato Super Mario?' },
+  { id: 'citta', name: 'Città del mondo', tagline: 'Metropoli, soprannomi e vecchi nomi', icon: 'Building2', color: '#0891B2', example: 'Quale città è chiamata «la Grande Mela»?' },
+  { id: 'feste', name: 'Feste e tradizioni', tagline: 'Ricorrenze, patroni e usanze', icon: 'PartyPopper', color: '#E11D48', example: 'Chi è il santo patrono di Milano?' },
   { id: 'valute', name: 'Valute e lingue', tagline: 'Soldi e parole del mondo', icon: 'Coins', color: '#2ED47A', example: 'Qual è la valuta del Giappone?' },
   { id: 'cucina', name: 'Cucina dal mondo', tagline: 'Piatti tipici e ingredienti', icon: 'UtensilsCrossed', color: '#FF7A1A', example: 'Da quale paese viene la paella?' },
+  { id: 'tavola', name: 'Cucina italiana', tagline: 'Piatti, vini e prodotti delle regioni', icon: 'Pizza', color: '#EA580C', example: 'Quale salume si usa nella carbonara?' },
   { id: 'italia', name: 'Italia', tagline: 'Regioni, città e curiosità', icon: 'Heart', color: '#18B26B', example: 'Qual è il capoluogo della Basilicata?' },
 ]
 

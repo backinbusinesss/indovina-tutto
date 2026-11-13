@@ -18,6 +18,12 @@ import {
   Shuffle,
   Trophy,
   FlaskConical,
+  Leaf,
+  Car,
+  Gamepad2,
+  Building2,
+  PartyPopper,
+  Pizza,
   Goal,
   Zap,
   Lightbulb,
@@ -59,6 +65,12 @@ const ICONS: Record<string, LucideIcon> = {
   Calculator,
   Tv,
   Users,
+  Leaf,
+  Car,
+  Gamepad2,
+  Building2,
+  PartyPopper,
+  Pizza,
 }
 
 export const MIX = { name: 'Mix Tutto', color: '#7C5CFF' }

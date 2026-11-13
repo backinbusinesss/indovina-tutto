@@ -25,6 +25,12 @@ export type CategoryId =
   | 'matematica'
   | 'tv'
   | 'personaggi'
+  | 'natura'
+  | 'motori'
+  | 'videogiochi'
+  | 'tavola'
+  | 'citta'
+  | 'feste'
 
 export type Source = CategoryId | 'mix'
 export type Difficulty = 1 | 2 | 3

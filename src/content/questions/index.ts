@@ -1,6 +1,14 @@
 import type { QuestionDef } from '@/engine/types'
 import { QUESTIONS as animali } from './animali'
 import { QUESTIONS as arte } from './arte'
+import { QUESTIONS as natura } from './natura'
+import { QUESTIONS as motori } from './motori'
+import { QUESTIONS as videogiochi } from './videogiochi'
+import { QUESTIONS as tavola } from './tavola'
+import { QUESTIONS as citta } from './citta'
+import { QUESTIONS as feste } from './feste'
+import { EXTRA1 } from './extra1'
+import { EXTRA2 } from './extra2'
 import { QUESTIONS as calcio } from './calcio'
 import { QUESTIONS as invenzioni } from './invenzioni'
 import { QUESTIONS as lingua } from './lingua'
@@ -22,4 +30,4 @@ import { QUESTIONS as monti } from './monti'
 import { QUESTIONS as monumenti } from './monumenti'
 
 /** Domande scritte a mano (fiumi, monti, laghi, geografia, monumenti, cucina, italia). */
-export const HANDWRITTEN: readonly QuestionDef[] = [...fiumi, ...monti, ...laghi, ...geografia, ...monumenti, ...cucina, ...italia, ...animali, ...storia, ...scienza, ...spazio, ...sport, ...arte, ...musica, ...calcio, ...mitologia, ...invenzioni, ...lingua, ...matematica, ...tv, ...personaggi]
+export const HANDWRITTEN: readonly QuestionDef[] = [...fiumi, ...monti, ...laghi, ...geografia, ...monumenti, ...cucina, ...italia, ...animali, ...storia, ...scienza, ...spazio, ...sport, ...arte, ...musica, ...calcio, ...mitologia, ...invenzioni, ...lingua, ...matematica, ...tv, ...personaggi, ...natura, ...motori, ...videogiochi, ...tavola, ...citta, ...feste, ...EXTRA1, ...EXTRA2]

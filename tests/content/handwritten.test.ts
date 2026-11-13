@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { QUESTIONS as animali } from '@/content/questions/animali'
 import { QUESTIONS as arte } from '@/content/questions/arte'
+import { QUESTIONS as natura } from '@/content/questions/natura'
+import { QUESTIONS as motori } from '@/content/questions/motori'
+import { QUESTIONS as videogiochi } from '@/content/questions/videogiochi'
+import { QUESTIONS as tavola } from '@/content/questions/tavola'
+import { QUESTIONS as citta } from '@/content/questions/citta'
+import { QUESTIONS as feste } from '@/content/questions/feste'
 import { QUESTIONS as calcio } from '@/content/questions/calcio'
 import { QUESTIONS as invenzioni } from '@/content/questions/invenzioni'
 import { QUESTIONS as lingua } from '@/content/questions/lingua'
@@ -45,6 +51,12 @@ const files: [string, readonly QuestionDef[], number][] = [
   ['matematica', matematica, 40],
   ['tv', tv, 40],
   ['personaggi', personaggi, 40],
+  ['natura', natura, 40],
+  ['motori', motori, 40],
+  ['videogiochi', videogiochi, 40],
+  ['tavola', tavola, 40],
+  ['citta', citta, 40],
+  ['feste', feste, 40],
 ]
 
 describe.each(files)('domande scritte a mano: %s', (category, questions, min) => {
@@ -90,11 +102,33 @@ describe.each(files)('domande scritte a mano: %s', (category, questions, min) =>
 })
 
 describe('totali', () => {
+  it('nessun id ripetuto e nessuna domanda malformata in tutta la banca', () => {
+    const all = getAllDefs()
+    expect(new Set(all.map((d) => d.id)).size).toBe(all.length)
+    for (const d of all) {
+      const labels = [d.answer.label, ...d.distractors.map((x) => x.label)].map((l) => l.trim().toLowerCase())
+      expect(new Set(labels).size, d.id).toBe(labels.length)
+      expect(d.distractors.length, d.id).toBeGreaterThanOrEqual(3)
+    }
+  })
+
+  it('nessuna domanda con lo stesso testo e la stessa risposta nella stessa categoria', () => {
+    const seen = new Set<string>()
+    const dup: string[] = []
+    for (const d of getAllDefs()) {
+      if (!/:\d{3}$/.test(d.id)) continue
+      const k = d.category + '|' + d.prompt.trim().toLowerCase()
+      if (seen.has(k)) dup.push(d.id)
+      seen.add(k)
+    }
+    expect(dup).toEqual([])
+  })
+
   it('geografia arriva ad almeno 150 domande', () => {
     expect(getBank('geografia').length).toBeGreaterThanOrEqual(150)
   })
 
-  it('in tutto almeno 3.200 domande', () => {
-    expect(getAllDefs().length).toBeGreaterThanOrEqual(3200)
+  it('in tutto almeno 3.700 domande', () => {
+    expect(getAllDefs().length).toBeGreaterThanOrEqual(3700)
   })
 })

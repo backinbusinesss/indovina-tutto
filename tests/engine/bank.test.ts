@@ -3,8 +3,8 @@ import { CATEGORIES, categoryById } from '@/content/categories'
 import { getAllDefs, getBank } from '@/engine/bank'
 
 describe('CATEGORIES', () => {
-  it('sono le 26 categorie, in ordine, con id unici', () => {
-    expect(CATEGORIES.map((c) => c.id)).toEqual(['bandiere','capitali','sagome','loghi','animali','geografia','fiumi','monti','laghi','monumenti','storia','scienza','spazio','sport','arte','musica','calcio','mitologia','invenzioni','lingua','matematica','tv','personaggi','valute','cucina','italia'])
+  it('sono le 32 categorie, in ordine, con id unici', () => {
+    expect(CATEGORIES.map((c) => c.id)).toEqual(['bandiere','capitali','sagome','loghi','animali','geografia','fiumi','monti','laghi','monumenti','storia','scienza','spazio','sport','arte','musica','calcio','mitologia','invenzioni','lingua','matematica','tv','personaggi','natura','motori','videogiochi','citta','feste','valute','cucina','tavola','italia'])
     expect(categoryById('sagome').name).toBe('Sagome dei paesi')
     for (const c of CATEGORIES) {
       expect(c.tagline.trim()).not.toBe('')

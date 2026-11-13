@@ -120,7 +120,7 @@ function CategoryStrip() {
 
 export function HowItWorks() {
   const steps = [
-    { title: 'Scegli', text: `Una delle ${CATEGORIES.length} categorie, oppure Mix Tutto per un po' di tutto.` },
+    { title: 'Scegli', text: `Una delle ${CATEGORIES.length} categorie, oppure Mix Tutto. Poi il livello: facile, medio, difficile o progressivo.` },
     { title: 'Rispondi', text: 'Quattro risposte, una sola giusta. Hai 20 secondi, e più vai avanti più si fa difficile.' },
     { title: 'Non fermarti', text: 'Ogni risposta giusta allunga la streak. Se sbagli, la salvi con un video o con le gemme.' },
   ]
@@ -197,7 +197,8 @@ export function Features() {
     { Icon: Sun, title: 'Sfida del giorno', text: '10 domande uguali per tutti, una volta al giorno. Il risultato si condivide a quadratini.' },
     { Icon: GemIcon, title: 'Gemme e aiuti', text: '50/50 per togliere due risposte, Salta per cambiare domanda, salvataggi quando sbagli.' },
     { Icon: WifiOff, title: 'Anche offline', text: 'Si installa come un’app e funziona in metro, in aereo, in montagna.' },
-    { Icon: BarChart3, title: 'Record e livelli', text: 'Il tuo record in ogni categoria, la percentuale di risposte giuste, il livello che sale.' },
+    { Icon: Check, title: 'Record e statistiche', text: 'Il tuo record in ogni categoria, la percentuale di risposte giuste, l’esperienza che sale.' },
+    { Icon: BarChart3, title: 'Quattro livelli', text: 'Facile, medio, difficile o progressivo: ogni categoria ha il suo livello e il suo record.' },
     { Icon: Moon, title: 'Chiaro o scuro', text: 'Tema automatico, suoni e vibrazione regolabili, timer disattivabile per giocare rilassati.' },
   ]
   const trust = [
@@ -309,7 +310,7 @@ export function GemsExplainer() {
             <ul className="mt-6 space-y-3">
               {[
                 `Tutte le ${CATEGORIES.length} categorie e oltre ${fmt(total())} domande`,
-                'Partite illimitate e Mix Tutto',
+                'Partite illimitate, Mix Tutto e quattro livelli di difficoltà',
                 'Sfida del giorno',
                 'Un video gratis per salvare la streak in ogni partita',
                 'Statistiche, record e livelli',

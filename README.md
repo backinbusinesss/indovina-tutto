@@ -1,6 +1,6 @@
 # Indovina Tutto
 
-Il quiz su tutto di **carlarcade**: 26 categorie (bandiere, capitali, sagome, loghi, animali, storia, scienza, spazio, sport, calcio, arte, musica e cinema, mitologia, invenzioni, lingua italiana, matematica, TV e fumetti, personaggi famosi, geografia, fiumi, monti, laghi, monumenti, valute, cucina, Italia) e oltre 3.300 domande, con streak, gemme, negozio, video premiati e sfida del giorno.
+Il quiz su tutto di **carlarcade**: 32 categorie e oltre 3.700 domande, ognuna giocabile in quattro livelli (progressivo, facile, medio, difficile), con streak, gemme, negozio, video premiati e sfida del giorno.
 
 - Sito: `/` · App: `/app/` (installabile, funziona offline)
 - Online: https://backinbusinesss.github.io/indovina-tutto/
