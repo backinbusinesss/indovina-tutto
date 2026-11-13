@@ -5,7 +5,9 @@ import { type ReactNode, useEffect } from 'react'
 import { applyTheme } from '@/lib/theme'
 import { useProfile } from '@/store/profile'
 import { useHydrated } from '@/store/useHydrated'
+import { AdsProvider } from '@/providers/ads'
 import { GemBurstLayer } from './GemBurstLayer'
+import { VideoAdModal } from './play/VideoAdModal'
 import { BottomNav, normalizePath, TopBar } from './Nav'
 
 /** Schermate "a tutto schermo", senza barra in alto né menu: la partita e la sfida. */
@@ -27,6 +29,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   }, [theme])
 
   return (
+    <AdsProvider Modal={VideoAdModal}>
     <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4">
       {!immersive && <TopBar />}
       <main className={immersive ? 'flex flex-1 flex-col' : 'flex-1 pb-28'}>
@@ -35,6 +38,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {!immersive && <BottomNav />}
       <GemBurstLayer />
     </div>
+    </AdsProvider>
   )
 }
 
