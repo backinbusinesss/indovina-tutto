@@ -2,6 +2,7 @@
 
 import { CATEGORIES } from '@/content/categories'
 import { CategoryCard, DailyChallengeCard, DailyChest, MixButton } from '@/ui/home'
+import { InstallHint } from '@/ui/InstallHint'
 
 export default function AppHome() {
   return (
@@ -9,6 +10,7 @@ export default function AppHome() {
       <DailyChest />
       <DailyChallengeCard />
       <MixButton />
+      <InstallHint />
       <section aria-labelledby="cat-title" className="pt-2">
         <h2 id="cat-title" className="mb-3 text-xl font-extrabold">
           Categorie

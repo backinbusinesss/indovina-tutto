@@ -3,6 +3,7 @@ import '@fontsource-variable/inter'
 import '@fontsource-variable/bricolage-grotesque'
 import './globals.css'
 import { assetUrl } from '@/lib/asset'
+import { SwRegister } from '@/lib/registerSw'
 import { THEME_BOOT_SCRIPT } from '@/lib/theme'
 
 export const metadata: Metadata = {
@@ -44,7 +45,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
       </head>
-      <body className="app-backdrop antialiased">{children}</body>
+      <body className="app-backdrop antialiased">
+        {children}
+        <SwRegister />
+      </body>
     </html>
   )
 }
