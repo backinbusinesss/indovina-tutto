@@ -40,7 +40,7 @@
 
 ---
 
-### Compito 1: Base del progetto
+### Task 1: Base del progetto
 
 **File:**
 - Crea: `package.json`, `next.config.ts`, `tsconfig.json`, `postcss.config.mjs`, `vitest.config.ts`, `.gitignore`, `src/app/layout.tsx`, `src/app/page.tsx` (provvisoria), `src/app/globals.css`, `src/lib/asset.ts`, `src/lib/storage.ts`
@@ -74,7 +74,7 @@ it('funziona se localStorage lancia errori', () => { vi.spyOn(Storage.prototype,
 - [ ] **Passo 6:** `npm run build`. Deve creare `out/index.html`.
 - [ ] **Passo 7:** `git init -b main`, commit "chore: base del progetto Next.js statico". Nello stesso commit copia `docs/` (progetto e piano).
 
-### Compito 2: Tipi, generatore casuale e domande "materializzate"
+### Task 2: Tipi, generatore casuale e domande "materializzate"
 
 **File:** Crea `src/engine/types.ts`, `src/engine/rng.ts`, `src/engine/materialize.ts` · Test `tests/engine/rng.test.ts`, `tests/engine/materialize.test.ts`
 
@@ -102,7 +102,7 @@ export type Rng = () => number // [0,1)
   - `materialize` restituisce 4 opzioni con etichette tutte diverse, `options.find(o => o.id === correct).label === def.answer.label`, e sullo stesso def con 50 semi diversi la risposta giusta finisce almeno una volta in ognuna delle 4 posizioni.
 - [ ] **Passo 2:** esegui i test: devono fallire. Implementa. Esegui di nuovo: devono passare. Commit "feat: tipi e generatore casuale del motore".
 
-### Compito 3: I 195 paesi
+### Task 3: I 195 paesi
 
 **File:** Crea `src/content/countries.ts` · Test `tests/content/countries.test.ts` · Dipendenza di sviluppo: `i18n-iso-countries`
 
@@ -137,7 +137,7 @@ Regole per scrivere i dati (dati scritti a mano, in italiano corrente):
   - i paesi con `capitalQuiz === false` sono esattamente `['IL', 'PS']`.
 - [ ] **Passo 2:** esegui i test: devono fallire. Scrivi i dati. Esegui di nuovo: devono passare. Commit "feat: dati dei 195 paesi".
 
-### Compito 4: Immagini (bandiere, sagome, loghi) e icone
+### Task 4: Immagini (bandiere, sagome, loghi) e icone
 
 **File:** Crea `scripts/build-assets.ts`, `src/content/logos.ts`, `public/flags/*.svg`, `public/shapes/*.svg`, `public/logos/*.svg` · Test `tests/content/assets.test.ts`
 
@@ -171,7 +171,7 @@ Il logo dell'app (`public/brand/logo.svg`: un punto interrogativo dentro un glob
 - [ ] **Passo 4:** apri `scripts/out/shapes-preview.html` nel browser. Ogni sagoma deve essere riconoscibile. Correggi `shape` in `countries.ts` per quelle che non lo sono, ma restando ad almeno 150.
 - [ ] **Passo 5:** commit "feat: bandiere, sagome, loghi e icone".
 
-### Compito 5: Domande generate (6 categorie)
+### Task 5: Domande generate (6 categorie)
 
 **File:** Crea `src/engine/generators.ts`, `src/content/categories.ts`, `src/engine/bank.ts` · Test `tests/engine/generators.test.ts`, `tests/engine/bank.test.ts`
 
@@ -205,7 +205,7 @@ Regole comuni:
   - ogni `media.src` punta a un file che esiste in `public/`.
 - [ ] **Passo 2:** esegui i test: devono fallire. Implementa. Esegui di nuovo: devono passare. Commit "feat: domande generate".
 
-### Compito 6: Domande scritte a mano (7 file)
+### Task 6: Domande scritte a mano (7 file)
 
 **File:** Crea `src/content/questions/{fiumi,monti,laghi,geografia,monumenti,cucina,italia}.ts`, ognuno con `export const QUESTIONS: QuestionDef[]` · Modifica `src/engine/bank.ts` per includerli · Test `tests/content/handwritten.test.ts`
 
@@ -239,7 +239,7 @@ Regole:
 - [ ] **Passo 2:** esegui il test: deve fallire. Scrivi un file alla volta e committa a ogni file ("feat: domande fiumi", …).
 - [ ] **Passo 3:** rilettura dei fatti, una domanda alla volta. Correggi tutto ciò che non è certo o è ambiguo. Per esempio, la lunghezza esatta del Nilo rispetto al Rio delle Amazzoni è contestata: niente domande su quale sia il più lungo.
 
-### Compito 7: Motore della partita ed economia
+### Task 7: Motore della partita ed economia
 
 **File:** Crea `src/engine/economy.ts`, `src/engine/picker.ts`, `src/engine/run.ts` · Test `tests/engine/economy.test.ts`, `tests/engine/picker.test.ts`, `tests/engine/run.test.ts`
 
@@ -292,7 +292,7 @@ Ogni funzione chiamata nella fase sbagliata restituisce lo stato **invariato**: 
   - `pickNext('mix')`: ogni categoria esce almeno una volta su 500 estrazioni.
 - [ ] **Passo 2:** esegui i test: devono fallire. Implementa. Esegui di nuovo: devono passare. Commit "feat: motore della partita ed economia".
 
-### Compito 8: Progressi e sfida del giorno
+### Task 8: Progressi e sfida del giorno
 
 **File:** Crea `src/engine/progress.ts`, `src/engine/daily.ts` · Test `tests/engine/progress.test.ts`, `tests/engine/daily.test.ts`
 
@@ -342,7 +342,7 @@ export function shareText(key: string, results: boolean[], url: string): string
   - **Condivisione:** `shareText` produce esattamente la stringa d'esempio.
 - [ ] **Passo 2:** esegui i test: devono fallire. Implementa. Esegui di nuovo: devono passare. Commit "feat: progressi e sfida del giorno".
 
-### Compito 9: Store del giocatore e "prese" per video e pagamenti
+### Task 9: Store del giocatore e "prese" per video e pagamenti
 
 **File:** Crea `src/store/profile.ts`, `src/store/useHydrated.ts`, `src/providers/ads.tsx`, `src/providers/payments.tsx` · Test `tests/store/profile.test.ts`
 
@@ -367,7 +367,7 @@ export function shareText(key: string, results: boolean[], url: string): string
   - `reset()` riporta a `initialProfile()`.
 - [ ] **Passo 2:** esegui i test: devono fallire. Implementa. Esegui di nuovo: devono passare. Commit "feat: store del giocatore e prese demo".
 
-### Compito 10: Aspetto, componenti base e guscio dell'app
+### Task 10: Aspetto, componenti base e guscio dell'app
 
 **File:**
 - Modifica `src/app/globals.css`, `src/app/layout.tsx`
@@ -412,7 +412,7 @@ Un piccolo script in linea nel `<head>` imposta `data-theme` prima che la pagina
 - [ ] **Passo 3:** controlla nel browser `/app/` con `npm run dev`: il guscio si vede sia col tema scuro sia col chiaro.
 - [ ] **Passo 4:** commit "feat: aspetto e componenti base".
 
-### Compito 11: Home dell'app e Profilo
+### Task 11: Home dell'app e Profilo
 
 **File:**
 - Crea `src/app/app/page.tsx`, `src/app/app/profilo/page.tsx`
@@ -441,7 +441,7 @@ Il link di ogni scheda è `/app/gioca/?c=<id>`.
   - l'azzeramento chiede conferma.
 - [ ] **Passo 2:** `npm run typecheck && npm test`, poi commit "feat: home dell'app e profilo".
 
-### Compito 12: Schermata di gioco, salvataggio della streak, fine partita
+### Task 12: Schermata di gioco, salvataggio della streak, fine partita
 
 **File:**
 - Crea `src/app/app/gioca/page.tsx`, che legge `?c=` con `useSearchParams` dentro `<Suspense>`; con un valore non valido usa `'mix'`
@@ -492,7 +492,7 @@ Il link di ogni scheda è `/app/gioca/?c=<id>`.
   - alla terza il costo mostrato è 20.
 - [ ] **Passo 4:** commit "feat: schermata di gioco e salvataggio della streak".
 
-### Compito 13: Negozio
+### Task 13: Negozio
 
 **File:** Crea `src/app/app/negozio/page.tsx`, `src/ui/{Shop,GemPackCard,CheckoutDemoModal}.tsx`. `Shop` si usa sia nella pagina sia nello `Sheet` aperto dalla partita.
 
@@ -514,7 +514,7 @@ Il link di ogni scheda è `/app/gioca/?c=<id>`.
   - aperto dalla partita, dopo l'acquisto si torna a "Salva la streak!" con il conto alla rovescia che riparte da dove si era fermato.
 - [ ] **Passo 2:** commit "feat: negozio demo".
 
-### Compito 14: Sfida del giorno
+### Task 14: Sfida del giorno
 
 **File:** Crea `src/app/app/sfida/page.tsx`, `src/ui/DailyResult.tsx`
 
@@ -535,7 +535,7 @@ Il link di ogni scheda è `/app/gioca/?c=<id>`.
   - il testo copiato è uguale a quello di `shareText`.
 - [ ] **Passo 2:** commit "feat: sfida del giorno".
 
-### Compito 15: Sito di presentazione
+### Task 15: Sito di presentazione
 
 **File:** Modifica `src/app/page.tsx` · Crea `src/landing/{Hero,DemoQuestion,CategoryShowcase,HowItWorks,DailyTeaser,GemsExplainer,InstallGuide,Faq,Footer,LandingNav}.tsx`
 
@@ -566,7 +566,7 @@ Il link di ogni scheda è `/app/gioca/?c=<id>`.
   - tutti i link portano a `/app/`.
 - [ ] **Passo 2:** commit "feat: sito di presentazione".
 
-### Compito 16: App installabile e funzionante senza connessione
+### Task 16: App installabile e funzionante senza connessione
 
 **File:** Crea `src/app/manifest.ts`, `scripts/generate-sw.mjs`, `src/ui/InstallHint.tsx`, `src/lib/registerSw.ts` · Test `tests/scripts/generate-sw.test.ts`
 
@@ -599,7 +599,7 @@ Il link di ogni scheda è `/app/gioca/?c=<id>`.
 - [ ] **Passo 2:** esegui il test: deve fallire. Implementa. Esegui di nuovo: deve passare.
 - [ ] **Passo 3:** commit "feat: app installabile e offline".
 
-### Compito 17: Verifica completa
+### Task 17: Verifica completa
 
 - [ ] **Passo 1:** `npm run typecheck && npm test`. Tutto deve essere verde.
 - [ ] **Passo 2:** fai la build di produzione con `NEXT_PUBLIC_BASE_PATH=/indovina-tutto`. Poi servi `out/` sotto `/indovina-tutto/` con un piccolo server statico (`scripts/serve-out.mjs`), avviato da `.claude/launch.json`, e aprilo nel browser integrato.
@@ -617,7 +617,7 @@ Il link di ogni scheda è `/app/gioca/?c=<id>`.
 - [ ] **Passo 4:** rileggi un campione di 50 domande a caso tra tutte le categorie e correggi gli errori.
 - [ ] **Passo 5:** commit delle correzioni.
 
-### Compito 18: Pubblicazione su GitHub Pages
+### Task 18: Pubblicazione su GitHub Pages
 
 **File:** Crea `.github/workflows/deploy.yml`, `README.md`
 
