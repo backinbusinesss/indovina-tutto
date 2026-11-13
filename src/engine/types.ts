@@ -11,6 +11,13 @@ export type CategoryId =
   | 'valute'
   | 'cucina'
   | 'italia'
+  | 'animali'
+  | 'storia'
+  | 'scienza'
+  | 'spazio'
+  | 'sport'
+  | 'arte'
+  | 'musica'
 
 export type Source = CategoryId | 'mix'
 export type Difficulty = 1 | 2 | 3

@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
+import { QUESTIONS as animali } from '@/content/questions/animali'
+import { QUESTIONS as arte } from '@/content/questions/arte'
 import { QUESTIONS as cucina } from '@/content/questions/cucina'
+import { QUESTIONS as musica } from '@/content/questions/musica'
+import { QUESTIONS as scienza } from '@/content/questions/scienza'
+import { QUESTIONS as spazio } from '@/content/questions/spazio'
+import { QUESTIONS as sport } from '@/content/questions/sport'
+import { QUESTIONS as storia } from '@/content/questions/storia'
 import { QUESTIONS as fiumi } from '@/content/questions/fiumi'
 import { QUESTIONS as geografia } from '@/content/questions/geografia'
 import { QUESTIONS as italia } from '@/content/questions/italia'
@@ -17,6 +24,13 @@ const files: [string, readonly QuestionDef[], number][] = [
   ['monumenti', monumenti, 80],
   ['cucina', cucina, 60],
   ['italia', italia, 100],
+  ['animali', animali, 40],
+  ['storia', storia, 40],
+  ['scienza', scienza, 40],
+  ['spazio', spazio, 40],
+  ['sport', sport, 40],
+  ['arte', arte, 40],
+  ['musica', musica, 40],
 ]
 
 describe.each(files)('domande scritte a mano: %s', (category, questions, min) => {
@@ -66,7 +80,7 @@ describe('totali', () => {
     expect(getBank('geografia').length).toBeGreaterThanOrEqual(150)
   })
 
-  it('in tutto almeno 1.500 domande', () => {
-    expect(getAllDefs().length).toBeGreaterThanOrEqual(1500)
+  it('in tutto almeno 2.300 domande', () => {
+    expect(getAllDefs().length).toBeGreaterThanOrEqual(2300)
   })
 })

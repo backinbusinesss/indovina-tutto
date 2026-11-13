@@ -94,7 +94,7 @@ export function CategoryShowcase() {
   return (
     <section id="categorie" className="scroll-mt-20 py-16 sm:py-24">
       <Container>
-        <SectionTitle eyebrow="12 categorie" title="Indovina davvero tutto">
+        <SectionTitle eyebrow={`${CATEGORIES.length} categorie`} title="Indovina davvero tutto">
           Dal tricolore al Kilimangiaro, dal logo della Ferrari alla sagoma del Cile.
         </SectionTitle>
         <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">

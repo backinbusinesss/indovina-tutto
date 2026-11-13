@@ -10,7 +10,14 @@ import {
   type LucideIcon,
   Map as MapIcon,
   Mountain,
+  Music,
+  Palette,
+  PawPrint,
+  Rocket,
+  ScrollText,
   Shuffle,
+  Trophy,
+  FlaskConical,
   UtensilsCrossed,
   Waves,
 } from 'lucide-react'
@@ -31,6 +38,13 @@ const ICONS: Record<string, LucideIcon> = {
   Coins,
   UtensilsCrossed,
   Heart,
+  PawPrint,
+  ScrollText,
+  FlaskConical,
+  Rocket,
+  Trophy,
+  Palette,
+  Music,
 }
 
 export const MIX = { name: 'Mix Tutto', color: '#7C5CFF' }
