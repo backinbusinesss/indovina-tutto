@@ -1,11 +1,264 @@
 @import "tailwindcss";
 
-:root {
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ colori */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
   --bg: #0b0f2a;
+  --bg-elev: #141a3d;
+  --surface: #1c2350;
+  --surface-2: #252d63;
   --text: #f2f4ff;
+  --muted: #a3a9d1;
+  --primary: #7c5cff;
+  --primary-2: #9b82ff;
+  --primary-press: #5b3fe0;
+  --gem: #ffc83d;
+  --gem-press: #d99a00;
+  --gem-ink: #ffc83d;
+  --fire: #ff7a1a;
+  --ok: #2ed47a;
+  --ok-press: #1a9c57;
+  --bad: #ff4d5e;
+  --bad-press: #c42536;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --shadow: 0 10px 30px rgba(3, 5, 20, 0.45);
+  --glow-1: rgba(124, 92, 255, 0.28);
+  --glow-2: rgba(47, 140, 255, 0.18);
+  --dots: rgba(255, 255, 255, 0.045);
+  --tile: #ffffff;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f5ff;
+  --bg-elev: #ffffff;
+  --surface: #eceeff;
+  --surface-2: #e0e3fb;
+  --text: #12163a;
+  --muted: #5a6090;
+  --ok: #18a85b;
+  --ok-press: #0f7a40;
+  --bad: #e5354a;
+  --bad-press: #a81d2e;
+  --gem-ink: #9a6400;
+  --border: rgba(18, 22, 58, 0.09);
+  --border-strong: rgba(18, 22, 58, 0.18);
+  --shadow: 0 10px 30px rgba(40, 40, 120, 0.12);
+  --glow-1: rgba(124, 92, 255, 0.16);
+  --glow-2: rgba(47, 140, 255, 0.1);
+  --dots: rgba(18, 22, 58, 0.05);
+  --tile: #ffffff;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-elev: var(--bg-elev);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-2: var(--primary-2);
+  --color-primary-press: var(--primary-press);
+  --color-gem: var(--gem);
+  --color-gem-ink: var(--gem-ink);
+  --color-fire: var(--fire);
+  --color-ok: var(--ok);
+  --color-bad: var(--bad);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-tile: var(--tile);
+  --font-display: "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --shadow-card: var(--shadow);
+}
+
+/* ------------------------------------------------------------------ base */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* sfondo con bagliori e puntini */
+.app-backdrop {
+  background:
+    radial-gradient(60rem 40rem at 0% -10%, var(--glow-1), transparent 60%),
+    radial-gradient(50rem 40rem at 110% 110%, var(--glow-2), transparent 60%),
+    radial-gradient(var(--dots) 1px, transparent 1px) 0 0 / 22px 22px,
+    var(--bg);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary-2);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* ------------------------------------------------------------------ pulsanti "da gioco" */
+.btn-game {
+  --btn-bg: var(--primary);
+  --btn-press: var(--primary-press);
+  --btn-text: #fff;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  color: var(--btn-text);
+  background: var(--btn-bg);
+  box-shadow: 0 4px 0 var(--btn-press);
+  transform: translateY(0);
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease,
+    filter 0.15s ease,
+    opacity 0.15s ease;
+  user-select: none;
+  touch-action: manipulation;
+}
+.btn-game:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+.btn-game:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--btn-press);
+}
+.btn-game:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  --btn-bg: linear-gradient(180deg, var(--primary-2), var(--primary));
+}
+.btn-secondary {
+  --btn-bg: var(--surface);
+  --btn-press: var(--surface-2);
+  --btn-text: var(--text);
+  box-shadow:
+    0 4px 0 var(--btn-press),
+    inset 0 0 0 1px var(--border);
+}
+.btn-gem {
+  --btn-bg: linear-gradient(180deg, #ffe08a, var(--gem));
+  --btn-press: var(--gem-press);
+  --btn-text: #3a2600;
+}
+.btn-ok {
+  --btn-bg: var(--ok);
+  --btn-press: var(--ok-press);
+}
+.btn-ghost {
+  --btn-bg: transparent;
+  --btn-press: transparent;
+  --btn-text: var(--muted);
+  box-shadow: none;
+}
+
+/* ------------------------------------------------------------------ schede */
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+/* ------------------------------------------------------------------ animazioni */
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  80% {
+    transform: translateX(4px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-7px);
+  }
+  40%,
+  60% {
+    transform: translateX(7px);
+  }
+}
+.animate-shake {
+  animation: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-pop {
+  animation: pop 0.4s ease-out;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    transform: scale(1) rotate(-2deg);
+  }
+  50% {
+    transform: scale(1.06) rotate(2deg);
+  }
+}
+.animate-flicker {
+  animation: flicker 1.2s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
