@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+scripts/out/
+.superpowers/
+next-env.d.ts
+*.tsbuildinfo
+*.log
+.env*
+.DS_Store
