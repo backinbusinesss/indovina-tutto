@@ -24,7 +24,7 @@ function Confetti() {
   const reduce = useReducedMotion()
   useEffect(() => {
     if (reduce) return
-    const colors = ['#7C5CFF', '#FFC83D', '#FF7A1A', '#2ED47A', '#FF5C7A', '#3DA5FF']
+    const colors = ['#4757EC', '#FFC83D', '#FF7A1A', '#2ED47A', '#FF5C7A', '#3DA5FF']
     confetti({ particleCount: 110, spread: 75, startVelocity: 45, origin: { y: 0.35 }, colors, disableForReducedMotion: true })
     const t = setTimeout(
       () => confetti({ particleCount: 70, spread: 120, origin: { y: 0.3 }, colors, disableForReducedMotion: true }),

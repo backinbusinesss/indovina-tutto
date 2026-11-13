@@ -20,7 +20,7 @@ export function LevelBadge() {
     <div className="card flex items-center gap-4 p-4">
       <div
         className="grid size-16 shrink-0 place-items-center rounded-2xl font-display text-2xl font-extrabold text-white"
-        style={{ background: 'linear-gradient(145deg, #9B82FF, #5B3FE0)', boxShadow: '0 8px 22px -8px #7C5CFF' }}
+        style={{ background: 'linear-gradient(145deg, #6B78FF, #2D3AD4)', boxShadow: '0 8px 22px -8px #4757EC' }}
         aria-hidden="true"
       >
         {level}

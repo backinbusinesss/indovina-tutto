@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { LevelBadge, QuickStats, ResetProgress, SettingsList, StatsTable } from '@/ui/profile'
 
 export default function ProfilePage() {
@@ -24,6 +25,9 @@ export default function ProfilePage() {
       <p className="pb-2 text-center text-xs text-muted">
         Indovina Tutto · un gioco carlarcade
         <br />I marchi appartengono ai rispettivi proprietari.
+        <br />
+        <Link href="/termini/" className="underline">Termini</Link> · <Link href="/privacy/" className="underline">Privacy</Link> ·{" "}
+        <Link href="/crediti/" className="underline">Crediti</Link>
       </p>
     </div>
   )

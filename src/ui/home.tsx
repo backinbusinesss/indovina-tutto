@@ -95,8 +95,8 @@ export function DailyChallengeCard() {
   return (
     <Link
       href="/app/sfida/"
-      className="group relative flex items-center gap-4 overflow-hidden rounded-3xl p-4 text-white shadow-[0_14px_34px_-12px_rgba(124,92,255,0.8)]"
-      style={{ background: 'linear-gradient(135deg, #8B6CFF 0%, #5B3FE0 55%, #2F2A8F 100%)' }}
+      className="group relative flex items-center gap-4 overflow-hidden rounded-3xl p-4 text-white shadow-[0_14px_34px_-12px_rgba(71,87,236,0.8)]"
+      style={{ background: 'linear-gradient(135deg, #6B78FF 0%, #2D3AD4 55%, #1E2690 100%)' }}
     >
       <span className="pointer-events-none absolute -top-10 -right-10 size-40 rounded-full bg-white/10 blur-2xl" aria-hidden="true" />
       <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/25">

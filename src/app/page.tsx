@@ -3,12 +3,12 @@ import {
   CategoryShowcase,
   DailyTeaser,
   Faq,
+  Features,
   FinalCta,
   Footer,
   GemsExplainer,
   Hero,
   HowItWorks,
-  InstallGuide,
   LandingNav,
 } from '@/landing/sections'
 
@@ -22,11 +22,11 @@ export default function Landing() {
       <LandingNav />
       <main>
         <Hero />
-        <CategoryShowcase />
         <HowItWorks />
+        <CategoryShowcase />
+        <Features />
         <DailyTeaser />
         <GemsExplainer />
-        <InstallGuide />
         <Faq />
         <FinalCta />
       </main>

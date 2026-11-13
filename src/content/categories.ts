@@ -14,7 +14,7 @@ export interface CategoryMeta {
 
 export const CATEGORIES: readonly CategoryMeta[] = [
   { id: 'bandiere', name: 'Bandiere', tagline: 'Tutte le 195 bandiere del mondo', icon: 'Flag', color: '#FF5C7A', example: 'Di quale paese è questa bandiera?' },
-  { id: 'capitali', name: 'Capitali', tagline: 'Da Roma a Ulan Bator', icon: 'Landmark', color: '#7C5CFF', example: "Qual è la capitale dell'Australia?" },
+  { id: 'capitali', name: 'Capitali', tagline: 'Da Roma a Ulan Bator', icon: 'Landmark', color: '#7C8CFF', example: "Qual è la capitale dell'Australia?" },
   { id: 'sagome', name: 'Sagome dei paesi', tagline: 'Lo riconosci dalla forma?', icon: 'Map', color: '#2ED4C8', example: 'Di quale paese è questa sagoma?' },
   { id: 'loghi', name: 'Loghi', tagline: 'Marchi famosi, senza il nome', icon: 'BadgeCheck', color: '#FFC83D', example: 'Di quale marchio è questo logo?' },
   { id: 'animali', name: 'Animali', tagline: 'Dal ghepardo alla balenottera', icon: 'PawPrint', color: '#8BC34A', example: "Qual è l'animale terrestre più veloce?" },
