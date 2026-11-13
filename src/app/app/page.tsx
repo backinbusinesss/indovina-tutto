@@ -1,15 +1,26 @@
 'use client'
 
-import { GameButton } from '@/ui/GameButton'
+import { CATEGORIES } from '@/content/categories'
+import { CategoryCard, DailyChallengeCard, DailyChest, MixButton } from '@/ui/home'
 
 export default function AppHome() {
   return (
-    <div className="space-y-4 pt-2">
-      <h1 className="text-3xl font-extrabold">Ciao!</h1>
-      <div className="card p-5">Home in costruzione</div>
-      <GameButton block size="lg">Gioca Mix Tutto</GameButton>
-      <GameButton block variant="secondary">Secondario</GameButton>
-      <GameButton block variant="gem">Gemme</GameButton>
+    <div className="space-y-4 pt-1">
+      <DailyChest />
+      <DailyChallengeCard />
+      <MixButton />
+      <section aria-labelledby="cat-title" className="pt-2">
+        <h2 id="cat-title" className="mb-3 text-xl font-extrabold">
+          Categorie
+        </h2>
+        <ul className="grid grid-cols-2 gap-3">
+          {CATEGORIES.map((c) => (
+            <li key={c.id}>
+              <CategoryCard category={c} />
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   )
 }

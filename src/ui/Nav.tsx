@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cx } from '@/lib/cx'
 import { useProfile } from '@/store/profile'
+import { useHydrated } from '@/store/useHydrated'
 import { DayStreak, GemCounter } from './counters'
 import { Logo } from './Logo'
 
@@ -13,12 +14,14 @@ export const normalizePath = (p: string | null) => (p ?? '/').replace(/\/+$/, ''
 export function TopBar() {
   const gems = useProfile((s) => s.gems)
   const dayStreak = useProfile((s) => s.dayStreak)
+  // finché il salvataggio non è stato letto, i numeri sarebbero quelli di partenza: meglio non mostrarli
+  const hydrated = useHydrated()
   return (
     <header className="sticky top-0 z-30 -mx-4 mb-2 flex items-center justify-between bg-gradient-to-b from-bg via-bg/90 to-transparent px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3">
       <Link href="/app/" aria-label="Indovina Tutto, home dell'app">
         <Logo />
       </Link>
-      <div className="flex items-center gap-2">
+      <div className={cx('flex items-center gap-2 transition-opacity', hydrated ? 'opacity-100' : 'opacity-0')}>
         <DayStreak value={dayStreak} />
         <GemCounter value={gems} href="/app/negozio/" />
       </div>

@@ -5,6 +5,7 @@ import { type ReactNode, useEffect } from 'react'
 import { applyTheme } from '@/lib/theme'
 import { useProfile } from '@/store/profile'
 import { useHydrated } from '@/store/useHydrated'
+import { GemBurstLayer } from './GemBurstLayer'
 import { BottomNav, normalizePath, TopBar } from './Nav'
 
 /** Schermate "a tutto schermo", senza barra in alto né menu: la partita e la sfida. */
@@ -32,6 +33,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         {hydrated ? children : <ShellSkeleton />}
       </main>
       {!immersive && <BottomNav />}
+      <GemBurstLayer />
     </div>
   )
 }
