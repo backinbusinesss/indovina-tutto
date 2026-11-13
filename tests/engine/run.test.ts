@@ -15,6 +15,7 @@ import {
   saveWithGems,
   saveWithVideo,
   skip,
+  statsKey,
   summarize,
   toSaveOffer,
 } from '@/engine/run'
@@ -190,6 +191,46 @@ describe('partita', () => {
     const s0 = streakOf(6).s
     const ended = endRun(toSaveOffer(answer(s0, wrongOf(s0)).state))
     expect(ended.phase).toBe('ended')
-    expect(summarize(ended)).toEqual({ source: 'bandiere', streak: 6, correct: 6, answered: 7, gemsEarned: 1 })
+    expect(summarize(ended)).toEqual({ source: 'bandiere', level: 'auto', streak: 6, correct: 6, answered: 7, gemsEarned: 1 })
+  })
+})
+
+describe('livelli', () => {
+  it('con un livello fisso escono solo domande di quel livello', () => {
+    for (const level of [1, 2, 3] as const) {
+      const r = createRng(level)
+      let s = createRun('capitali', r, level)
+      expect(s.level).toBe(level)
+      for (let i = 0; i < 30; i++) {
+        expect(s.question.difficulty).toBe(level)
+        s = next(right(s), r).state
+      }
+    }
+  })
+
+  it('Mix Tutto difficile pesca solo domande difficili, da più categorie', () => {
+    const r = createRng(8)
+    const cats = new Set<string>()
+    for (let i = 0; i < 200; i++) {
+      const { def } = pickNext('mix', new Set(), 0, r, 3)
+      expect(def.difficulty).toBe(3)
+      cats.add(def.category)
+    }
+    expect(cats.size).toBeGreaterThan(15)
+  })
+
+  it('il riepilogo riporta il livello e il livello ha il suo record', () => {
+    const s = createRun('bandiere', rng, 3)
+    expect(summarize(endRun(s)).level).toBe(3)
+    expect(statsKey('bandiere', 'auto')).toBe('bandiere')
+    expect(statsKey('bandiere', 3)).toBe('bandiere@3')
+  })
+
+  it('ogni categoria ha almeno 12 domande per livello', () => {
+    for (const c of CATEGORIES) {
+      for (const d of [1, 2, 3]) {
+        expect(getBank(c.id).filter((q) => q.difficulty === d).length, `${c.id} livello ${d}`).toBeGreaterThanOrEqual(12)
+      }
+    }
   })
 })

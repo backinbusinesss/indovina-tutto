@@ -75,7 +75,10 @@ export function StatsTable() {
   return (
     <ul className="card divide-y divide-line">
       {rows.map((id) => {
-        const s = stats[id]
+        const parts = [id, `${id}@1`, `${id}@2`, `${id}@3`].map((k) => stats[k]).filter((x) => !!x)
+        const s = parts.length
+          ? parts.reduce((a, b) => ({ best: Math.max(a.best, b.best), runs: a.runs + b.runs, correct: a.correct + b.correct, answered: a.answered + b.answered }))
+          : undefined
         const pct = s && s.answered > 0 ? Math.round((s.correct / s.answered) * 100) : null
         return (
           <li key={id} className="flex items-center gap-3 px-4 py-3">

@@ -2,12 +2,13 @@ import { ECONOMY } from './economy'
 import { materialize } from './materialize'
 import { pickNext } from './picker'
 import { shuffle } from './rng'
-import type { OptionId, Question, Rng, Source } from './types'
+import type { Level, OptionId, Question, Rng, Source } from './types'
 
 export type RunPhase = 'question' | 'correct' | 'wrong' | 'save-offer' | 'ended'
 
 export interface RunState {
   source: Source
+  level: Level
   phase: RunPhase
   question: Question
   streak: number
@@ -30,6 +31,7 @@ export type RunEvent = { type: 'gem'; amount: number } | { type: 'exhausted' }
 
 export interface RunSummary {
   source: Source
+  level: Level
   streak: number
   correct: number
   answered: number
@@ -37,7 +39,7 @@ export interface RunSummary {
 }
 
 function withNewQuestion(s: RunState, rng: Rng): RunState {
-  const { def, exhausted } = pickNext(s.source, new Set(s.seen), s.streak, rng)
+  const { def, exhausted } = pickNext(s.source, new Set(s.seen), s.streak, rng, s.level)
   return {
     ...s,
     phase: 'question',
@@ -50,9 +52,10 @@ function withNewQuestion(s: RunState, rng: Rng): RunState {
   }
 }
 
-export function createRun(source: Source, rng: Rng): RunState {
+export function createRun(source: Source, rng: Rng, level: Level = 'auto'): RunState {
   const empty = {
     source,
+    level,
     phase: 'question',
     streak: 0,
     correctCount: 0,
@@ -138,9 +141,15 @@ export function endRun(s: RunState): RunState {
 export function summarize(s: RunState): RunSummary {
   return {
     source: s.source,
+    level: s.level,
     streak: s.streak,
     correct: s.correctCount,
     answered: s.answeredCount,
     gemsEarned: s.gemsEarned,
   }
+}
+
+/** Chiave delle statistiche: ogni livello fisso ha il suo record. */
+export function statsKey(source: Source, level: Level): string {
+  return level === 'auto' ? source : `${source}@${level}`
 }

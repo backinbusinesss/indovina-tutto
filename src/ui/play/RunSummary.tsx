@@ -5,13 +5,14 @@ import { RotateCcw, Share2 } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import type { RunSummary as Summary } from '@/engine/run'
+import { type RunSummary as Summary, statsKey } from '@/engine/run'
 import { shareOrCopy, siteUrl } from '@/lib/share'
 import { play } from '@/lib/sound'
 import { useProfile } from '@/store/profile'
 import { sourceMeta } from '../CategoryIcon'
 import { StreakFlame } from '../counters'
 import { GameButton } from '../GameButton'
+import { levelName } from '../LevelSheet'
 import { GemIcon } from '../icons'
 
 export interface RunResult {
@@ -37,9 +38,10 @@ function Confetti() {
 
 export function RunSummary({ result, onAgain }: { result: RunResult; onAgain(): void }) {
   const { summary, newRecord, bonus } = result
-  const best = useProfile((s) => s.stats[summary.source]?.best ?? 0)
+  const best = useProfile((s) => s.stats[statsKey(summary.source, summary.level)]?.best ?? 0)
   const [copied, setCopied] = useState(false)
-  const { name } = sourceMeta(summary.source)
+  const base = sourceMeta(summary.source).name
+  const name = summary.level === 'auto' ? base : `${base} (${levelName(summary.level).toLowerCase()})`
   const pct = summary.answered > 0 ? Math.round((summary.correct / summary.answered) * 100) : 0
 
   useEffect(() => {

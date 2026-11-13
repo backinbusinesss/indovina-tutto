@@ -1,7 +1,6 @@
 import { addDays } from './daily'
 import { ECONOMY } from './economy'
-import type { RunSummary } from './run'
-import type { Source } from './types'
+import { type RunSummary, statsKey } from './run'
 
 export interface Settings {
   sound: boolean
@@ -30,7 +29,8 @@ export interface Profile {
   dayStreak: number
   lastPlayedDay: string | null
   lastChestDay: string | null
-  stats: Partial<Record<Source, CategoryStats>>
+  /** chiave: categoria, oppure categoria@livello per i livelli fissi */
+  stats: Partial<Record<string, CategoryStats>>
   daily: Record<string, DailyRecord>
   shopVideos: { day: string; count: number }
   settings: Settings
@@ -92,7 +92,8 @@ export function applyRun(
   r: RunSummary,
   today: string,
 ): { profile: Profile; newRecord: boolean; bonus: number } {
-  const prev = p.stats[r.source] ?? { best: 0, runs: 0, correct: 0, answered: 0 }
+  const key = statsKey(r.source, r.level)
+  const prev = p.stats[key] ?? { best: 0, runs: 0, correct: 0, answered: 0 }
   const newRecord = r.streak > prev.best && r.streak >= ECONOMY.recordMinStreak
   const bonus = newRecord ? ECONOMY.recordBonus : 0
   let profile: Profile = {
@@ -100,7 +101,7 @@ export function applyRun(
     xp: p.xp + r.correct,
     stats: {
       ...p.stats,
-      [r.source]: {
+      [key]: {
         best: Math.max(prev.best, r.streak),
         runs: prev.runs + 1,
         correct: prev.correct + r.correct,

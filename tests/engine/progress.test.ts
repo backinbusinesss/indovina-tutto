@@ -100,7 +100,7 @@ describe('forziere', () => {
 })
 
 describe('fine partita', () => {
-  const run = (streak: number) => ({ source: 'bandiere' as const, streak, correct: streak, answered: streak + 1, gemsEarned: 0 })
+  const run = (streak: number) => ({ source: 'bandiere' as const, level: 'auto' as const, streak, correct: streak, answered: streak + 1, gemsEarned: 0 })
 
   it('nuovo record: +5 gemme, solo da 3 in su', () => {
     const p0 = initialProfile()
@@ -121,6 +121,16 @@ describe('fine partita', () => {
     expect(r.xp).toBe(4)
     expect(r.dayStreak).toBe(1)
     expect(r.lastPlayedDay).toBe('2026-11-13')
+  })
+})
+
+describe('record per livello', () => {
+  it('il livello difficile ha un record separato', () => {
+    const hard = { source: 'bandiere' as const, level: 3 as const, streak: 4, correct: 4, answered: 5, gemsEarned: 0 }
+    const r = applyRun(initialProfile(), hard, '2026-11-13')
+    expect(r.newRecord).toBe(true)
+    expect(r.profile.stats['bandiere@3']?.best).toBe(4)
+    expect(r.profile.stats.bandiere).toBeUndefined()
   })
 })
 

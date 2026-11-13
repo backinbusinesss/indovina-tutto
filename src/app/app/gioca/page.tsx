@@ -3,14 +3,17 @@
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { isCategoryId } from '@/content/categories'
-import type { Source } from '@/engine/types'
+import type { Level, Source } from '@/engine/types'
 import { PlayScreen } from '@/ui/play/PlayScreen'
 import { ShopSheet } from '@/ui/shop/ShopSheet'
 
 function Game() {
-  const c = useSearchParams().get('c') ?? 'mix'
+  const params = useSearchParams()
+  const c = params.get('c') ?? 'mix'
   const source: Source = c === 'mix' || isCategoryId(c) ? c : 'mix'
-  return <PlayScreen key={source} source={source} renderShop={(p) => <ShopSheet {...p} />} />
+  const l = Number(params.get('l'))
+  const level: Level = l === 1 || l === 2 || l === 3 ? l : 'auto'
+  return <PlayScreen key={source + level} source={source} level={level} renderShop={(p) => <ShopSheet {...p} />} />
 }
 
 export default function PlayPage() {

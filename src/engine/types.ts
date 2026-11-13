@@ -28,6 +28,8 @@ export type CategoryId =
 
 export type Source = CategoryId | 'mix'
 export type Difficulty = 1 | 2 | 3
+/** livello scelto per la partita: progressivo oppure fisso */
+export type Level = 'auto' | Difficulty
 
 export interface Media {
   kind: 'flag' | 'shape' | 'logo'

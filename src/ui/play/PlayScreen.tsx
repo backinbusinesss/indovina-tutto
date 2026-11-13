@@ -21,7 +21,7 @@ import {
   summarize,
   toSaveOffer,
 } from '@/engine/run'
-import type { OptionId, Source } from '@/engine/types'
+import type { Level, OptionId, Source } from '@/engine/types'
 import { useCountdown } from '@/lib/countdown'
 import { vibrate } from '@/lib/haptics'
 import { play } from '@/lib/sound'
@@ -30,6 +30,7 @@ import { centerOf, useFx } from '@/store/fx'
 import { useProfile } from '@/store/profile'
 import { StreakFlame, GemCounter } from '../counters'
 import { GameButton } from '../GameButton'
+import { levelName } from '../LevelSheet'
 import { Modal } from '../Overlay'
 import { AnswerGrid } from './AnswerGrid'
 import { HintBar, TimerBar } from './bits'
@@ -43,11 +44,12 @@ const newRng = () => createRng((Date.now() ^ Math.floor(Math.random() * 1e9)) >>
 
 export interface PlayScreenProps {
   source: Source
+  level?: Level
   /** il negozio da aprire sopra la partita quando le gemme non bastano */
   renderShop?: (props: { open: boolean; onClose(): void }) => ReactNode
 }
 
-export function PlayScreen({ source, renderShop }: PlayScreenProps) {
+export function PlayScreen({ source, level = 'auto', renderShop }: PlayScreenProps) {
   const router = useRouter()
   const ads = useAds()
   const burst = useFx((s) => s.burst)
@@ -56,7 +58,7 @@ export function PlayScreen({ source, renderShop }: PlayScreenProps) {
   const { addGems, spendGems, applyRun } = useProfile.getState()
 
   const rng = useRef(newRng())
-  const [run, setRun] = useState<RunState>(() => createRun(source, rng.current))
+  const [run, setRun] = useState<RunState>(() => createRun(source, rng.current, level))
   const runRef = useRef(run)
   const [result, setResult] = useState<RunResult | null>(null)
   const [videoOpen, setVideoOpen] = useState(false)
@@ -178,7 +180,7 @@ export function PlayScreen({ source, renderShop }: PlayScreenProps) {
   const playAgain = () => {
     recorded.current = false
     setResult(null)
-    commit(createRun(source, rng.current))
+    commit(createRun(source, rng.current, level))
   }
 
   const onExit = () => {
@@ -208,7 +210,12 @@ export function PlayScreen({ source, renderShop }: PlayScreenProps) {
         >
           <X className="size-5" />
         </button>
-        <StreakFlame value={run.streak} />
+        <div className="flex flex-col items-center">
+          <StreakFlame value={run.streak} />
+          {level !== 'auto' && (
+            <span className="text-[10px] font-bold tracking-widest text-muted uppercase">{levelName(level)}</span>
+          )}
+        </div>
         <GemCounter value={gems} />
       </header>
 

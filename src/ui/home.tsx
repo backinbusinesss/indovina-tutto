@@ -7,6 +7,8 @@ import { useRef, useState } from 'react'
 import type { CategoryMeta } from '@/content/categories'
 import { dateKeyRome } from '@/engine/daily'
 import { ECONOMY } from '@/engine/economy'
+import { statsKey } from '@/engine/run'
+import type { Level, Source } from '@/engine/types'
 import { chestAvailable, effectiveDayStreak } from '@/engine/progress'
 import { play } from '@/lib/sound'
 import { centerOf, useFx } from '@/store/fx'
@@ -117,13 +119,21 @@ export function DailyChallengeCard() {
   )
 }
 
-export function MixButton() {
-  const best = useProfile((s) => s.stats.mix?.best ?? 0)
+/** il record migliore tra tutti i livelli */
+function useBest(source: Source): number {
+  return useProfile((s) => Math.max(0, ...(['auto', 1, 2, 3] as Level[]).map((l) => s.stats[statsKey(source, l)]?.best ?? 0)))
+}
+
+export function MixButton({ onPick }: { onPick(source: Source): void }) {
+  const best = useBest('mix')
   return (
-    <Link
-      href="/app/gioca/?c=mix"
+    <button
+      type="button"
       className="btn-game btn-primary h-16 w-full justify-between rounded-2xl px-5 text-lg"
-      onClick={() => play('tap')}
+      onClick={() => {
+        play('tap')
+        onPick('mix')
+      }}
     >
       <span className="flex items-center gap-3">
         <Shuffle className="size-6" strokeWidth={2.5} />
@@ -134,24 +144,27 @@ export function MixButton() {
           <FlameIcon className="size-4" /> {best}
         </span>
       )}
-    </Link>
+    </button>
   )
 }
 
-export function CategoryCard({ category }: { category: CategoryMeta }) {
-  const stats = useProfile((s) => s.stats[category.id])
+export function CategoryCard({ category, onPick }: { category: CategoryMeta; onPick(source: Source): void }) {
+  const best = useBest(category.id)
   return (
-    <Link
-      href={`/app/gioca/?c=${category.id}`}
-      onClick={() => play('tap')}
-      className="card group flex flex-col gap-3 p-3.5 transition-transform active:scale-[0.97]"
+    <button
+      type="button"
+      onClick={() => {
+        play('tap')
+        onPick(category.id)
+      }}
+      className="card group flex h-full w-full flex-col gap-3 p-3.5 text-left transition-transform active:scale-[0.97]"
     >
-      <div className="flex items-start justify-between">
+      <div className="flex w-full items-start justify-between">
         <CategoryTile source={category.id} />
-        {stats && stats.best > 0 ? (
+        {best > 0 ? (
           <span className="flex items-center gap-0.5 rounded-full bg-surface px-2 py-0.5 text-xs font-bold text-fire" title="Record">
             <FlameIcon className="size-3.5" />
-            {stats.best}
+            {best}
           </span>
         ) : (
           <span className="rounded-full bg-surface px-2 py-0.5 text-[10px] font-bold tracking-wide text-muted uppercase">Nuova</span>
@@ -161,6 +174,6 @@ export function CategoryCard({ category }: { category: CategoryMeta }) {
         <h3 className="font-display text-base leading-tight font-extrabold">{category.name}</h3>
         <p className="mt-0.5 line-clamp-2 text-xs text-muted">{category.tagline}</p>
       </div>
-    </Link>
+    </button>
   )
 }
