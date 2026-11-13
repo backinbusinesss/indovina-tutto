@@ -19,7 +19,7 @@ interface Sample {
 
 const SAMPLES: Sample[] = [
   { category: 'Bandiere', color: '#FF5C7A', prompt: 'Di quale paese è questa bandiera?', media: { kind: 'flag', src: 'flags/br.svg' }, options: ['Portogallo', 'Brasile', 'Argentina', 'Colombia'], correct: 1 },
-  { category: 'Capitali', color: '#4757EC', prompt: "Qual è la capitale dell'Australia?", options: ['Sydney', 'Melbourne', 'Canberra', 'Perth'], correct: 2 },
+  { category: 'Capitali', color: '#7C5CFF', prompt: "Qual è la capitale dell'Australia?", options: ['Sydney', 'Melbourne', 'Canberra', 'Perth'], correct: 2 },
   { category: 'Loghi', color: '#FFC83D', prompt: 'Di quale marchio è questo logo?', media: { kind: 'logo', src: 'logos/ferrari.svg' }, options: ['Ferrari', 'Lamborghini', 'Maserati', 'Porsche'], correct: 0 },
   { category: 'Sagome dei paesi', color: '#2ED4C8', prompt: 'Di quale paese è questa sagoma?', media: { kind: 'shape', src: 'shapes/it.svg' }, options: ['Grecia', 'Croazia', 'Spagna', 'Italia'], correct: 3 },
 ]
@@ -80,7 +80,7 @@ export function DemoQuestion() {
   const s = SAMPLES[i]
   return (
     <div className="relative mx-auto w-full max-w-[20rem]" aria-hidden="true">
-      <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-[radial-gradient(closest-side,rgba(71,87,236,0.45),transparent)] blur-2xl" />
+      <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-[radial-gradient(closest-side,rgba(124,92,255,0.45),transparent)] blur-2xl" />
       <div className="rounded-[2.4rem] border border-line-strong bg-bg/95 p-3 shadow-[0_30px_80px_-20px_rgba(10,8,40,0.8)]">
         <div className="rounded-[1.9rem] border border-line bg-[linear-gradient(180deg,var(--bg-elev),var(--bg))] px-4 pt-4 pb-5">
           <div className="mb-3 flex items-center justify-between">

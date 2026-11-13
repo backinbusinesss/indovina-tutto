@@ -3,26 +3,19 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ------------------------------------------------------------------ colori
-   Famiglia carlarcade (come Sbobina): nero caldo / carta, indaco #4757EC,
-   più gli accenti del gioco (oro delle gemme, fuoco della streak). */
+   Identità propria di Indovina Tutto: blu notte, viola elettrico, oro e fuoco. */
 :root,
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #131210;
-  --bg-elev: #1c1b18;
-  --surface: #262420;
-  --surface-2: #322f2a;
-  --text: #f3efe6;
-  --muted: #a8a294;
-  --primary: #4757ec;
-  --primary-2: #9aa8ff;
-  --primary-press: #2d3ad4;
-  --marker: rgba(255, 225, 77, 0.35);
-  --marker-green: rgba(159, 240, 191, 0.3);
-  --marker-pink: rgba(255, 180, 200, 0.3);
-  --marker-blue: rgba(169, 216, 255, 0.3);
-  --paper-line: rgba(255, 255, 255, 0.06);
-  --paper-margin: rgba(239, 68, 68, 0.3);
+  --bg: #0b0f2a;
+  --bg-elev: #141a3d;
+  --surface: #1c2350;
+  --surface-2: #252d63;
+  --text: #f2f4ff;
+  --muted: #a3a9d1;
+  --primary: #7c5cff;
+  --primary-2: #9b82ff;
+  --primary-press: #5b3fe0;
   --gem: #ffc83d;
   --gem-press: #d99a00;
   --gem-ink: #ffc83d;
@@ -31,41 +24,35 @@
   --ok-press: #1a9c57;
   --bad: #ff4d5e;
   --bad-press: #c42536;
-  --border: rgba(243, 239, 230, 0.08);
-  --border-strong: rgba(243, 239, 230, 0.16);
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --glow-1: rgba(71, 87, 236, 0.16);
-  --glow-2: rgba(255, 200, 61, 0.06);
-  --dots: rgba(243, 239, 230, 0.035);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --shadow: 0 10px 30px rgba(3, 5, 20, 0.45);
+  --glow-1: rgba(124, 92, 255, 0.28);
+  --glow-2: rgba(47, 140, 255, 0.18);
+  --dots: rgba(255, 255, 255, 0.045);
   --tile: #ffffff;
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: #faf8f3;
+  --bg: #f6f5ff;
   --bg-elev: #ffffff;
-  --surface: #f1ede4;
-  --surface-2: #e6e0d4;
-  --text: #1a1916;
-  --muted: #6b665c;
-  --primary-2: #2d3ad4;
-  --marker: rgba(255, 225, 77, 0.6);
-  --marker-green: rgba(110, 231, 160, 0.45);
-  --marker-pink: rgba(255, 150, 180, 0.4);
-  --marker-blue: rgba(120, 190, 255, 0.4);
-  --paper-line: rgba(26, 25, 22, 0.06);
-  --paper-margin: rgba(239, 68, 68, 0.35);
+  --surface: #eceeff;
+  --surface-2: #e0e3fb;
+  --text: #12163a;
+  --muted: #5a6090;
+  --primary-2: #6a48f0;
   --ok: #18a85b;
   --ok-press: #0f7a40;
   --bad: #e5354a;
   --bad-press: #a81d2e;
   --gem-ink: #9a6400;
-  --border: rgba(26, 25, 22, 0.1);
-  --border-strong: rgba(26, 25, 22, 0.2);
-  --shadow: 0 10px 30px rgba(60, 50, 30, 0.1);
-  --glow-1: rgba(71, 87, 236, 0.08);
-  --glow-2: rgba(255, 200, 61, 0.08);
-  --dots: rgba(26, 25, 22, 0.05);
+  --border: rgba(18, 22, 58, 0.09);
+  --border-strong: rgba(18, 22, 58, 0.18);
+  --shadow: 0 10px 30px rgba(40, 40, 120, 0.12);
+  --glow-1: rgba(124, 92, 255, 0.16);
+  --glow-2: rgba(47, 140, 255, 0.1);
+  --dots: rgba(18, 22, 58, 0.05);
   --tile: #ffffff;
 }
 
@@ -89,7 +76,6 @@
   --color-tile: var(--tile);
   --font-display: "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-hand: "Caveat Variable", "Segoe Print", "Bradley Hand", cursive;
   --shadow-card: var(--shadow);
 }
 
@@ -107,13 +93,12 @@ body {
   overflow-x: hidden;
 }
 
-/* sfondo a quadretti, come un quaderno (stile carlarcade) */
+/* sfondo con bagliori e puntini */
 .app-backdrop {
   background:
     radial-gradient(60rem 40rem at 0% -10%, var(--glow-1), transparent 60%),
     radial-gradient(50rem 40rem at 110% 110%, var(--glow-2), transparent 60%),
-    linear-gradient(var(--dots) 1px, transparent 1px) 0 0 / 28px 28px,
-    linear-gradient(90deg, var(--dots) 1px, transparent 1px) 0 0 / 28px 28px,
+    radial-gradient(var(--dots) 1px, transparent 1px) 0 0 / 22px 22px,
     var(--bg);
   background-attachment: fixed;
 }
@@ -126,59 +111,30 @@ h3,
   letter-spacing: -0.025em;
 }
 
-.font-hand {
-  font-family: var(--font-hand);
-  letter-spacing: 0;
+/* etichetta sopra i titoli */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary-2);
 }
 
-/* evidenziatore: si disegna da sinistra a destra */
-.marker {
-  background-image: linear-gradient(100deg, transparent 2%, var(--marker-color, var(--marker)) 4%, var(--marker-color, var(--marker)) 96%, transparent 98%);
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-  background-position: 0 88%;
-  background-repeat: no-repeat;
-  background-size: 100% 42%;
-  padding: 0 0.12em;
+/* parole in evidenza nei titoli: testo sfumato */
+.hl {
+  background-image: linear-gradient(90deg, var(--primary-2), #ff8fb1 55%, var(--gem));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-.marker-green {
-  --marker-color: var(--marker-green);
+.hl-green {
+  background-image: linear-gradient(90deg, #2ed4c8, var(--ok));
 }
-.marker-pink {
-  --marker-color: var(--marker-pink);
+.hl-blue {
+  background-image: linear-gradient(90deg, #3da5ff, var(--primary-2));
 }
-.marker-blue {
-  --marker-color: var(--marker-blue);
-}
-@keyframes marker-sweep {
-  from {
-    background-size: 0% 42%;
-  }
-  to {
-    background-size: 100% 42%;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .anim-marker {
-    animation: marker-sweep 0.9s 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  }
-}
-
-/* sottolineatura a mano */
-.scribble {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 40 2, 80 11, 120 6 S 180 3, 198 7' fill='none' stroke='%234757ec' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  background-size: 100% 0.35em;
-  padding-bottom: 0.15em;
-}
-
-/* foglio a righe con il margine rosso */
-.paper {
-  background:
-    linear-gradient(90deg, transparent 38px, var(--paper-margin) 38px, var(--paper-margin) 39px, transparent 39px),
-    repeating-linear-gradient(transparent 0, transparent 27px, var(--paper-line) 27px, var(--paper-line) 28px),
-    var(--bg-elev);
+.hl-fire {
+  background-image: linear-gradient(90deg, var(--gem), var(--fire));
 }
 
 @keyframes fade-up {
@@ -240,7 +196,7 @@ h3,
   cursor: not-allowed;
 }
 .btn-primary {
-  --btn-bg: linear-gradient(180deg, #5c6af2, var(--primary));
+  --btn-bg: linear-gradient(180deg, var(--primary-2), var(--primary));
 }
 .btn-secondary {
   --btn-bg: var(--surface);

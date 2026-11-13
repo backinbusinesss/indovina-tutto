@@ -15,8 +15,8 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: 'portrait',
     lang: 'it',
     dir: 'ltr',
-    background_color: '#131210',
-    theme_color: '#131210',
+    background_color: '#0B0F2A',
+    theme_color: '#0B0F2A',
     categories: ['games', 'education', 'trivia'],
     icons: [
       { src: assetUrl('icons/icon-192.png'), sizes: '192x192', type: 'image/png', purpose: 'any' },

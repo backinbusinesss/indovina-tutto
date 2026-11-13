@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/bricolage-grotesque'
-import '@fontsource-variable/caveat'
 import './globals.css'
 import { assetUrl } from '@/lib/asset'
 import { SwRegister } from '@/lib/registerSw'
@@ -37,7 +36,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#131210',
+  themeColor: '#0B0F2A',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

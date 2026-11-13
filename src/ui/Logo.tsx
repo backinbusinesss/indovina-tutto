@@ -7,8 +7,8 @@ export function LogoMark({ className = 'size-9' }: { className?: string }) {
     <svg viewBox="0 0 512 512" className={className} aria-hidden="true">
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#6B78FF" />
-          <stop offset="1" stopColor="#2D3AD4" />
+          <stop offset="0" stopColor="#8B6CFF" />
+          <stop offset="1" stopColor="#5B3FE0" />
         </linearGradient>
         <linearGradient id={`${id}gold`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#FFE08A" />
@@ -37,7 +37,7 @@ export function LogoMark({ className = 'size-9' }: { className?: string }) {
 export function Logo({ className, compact }: { className?: string; compact?: boolean }) {
   return (
     <span className={cx('inline-flex items-center gap-2', className)}>
-      <LogoMark className="size-9 drop-shadow-[0_4px_12px_rgba(71,87,236,0.45)]" />
+      <LogoMark className="size-9 drop-shadow-[0_4px_12px_rgba(124,92,255,0.45)]" />
       {!compact && (
         <span className="font-display text-lg leading-none font-extrabold">
           Indovina<span className="text-primary-2"> Tutto</span>

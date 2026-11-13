@@ -7,7 +7,7 @@ import { InstallHint } from '@/ui/InstallHint'
 export default function AppHome() {
   return (
     <div className="space-y-4 pt-1">
-      <p className="font-hand -mb-1 text-2xl text-primary-2">pronto a giocare? ✎</p>
+      <p className="eyebrow">pronto a giocare?</p>
       <DailyChest />
       <DailyChallengeCard />
       <MixButton />

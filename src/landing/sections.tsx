@@ -19,7 +19,7 @@ export function Container({ children, className = '' }: { children: ReactNode; c
 }
 
 function Eyebrow({ children }: { children: ReactNode }) {
-  return <p className="font-hand text-2xl text-primary-2">{children}</p>
+  return <p className="eyebrow">{children}</p>
 }
 
 function SectionTitle({ eyebrow, title, children }: { eyebrow?: string; title: ReactNode; children?: ReactNode }) {
@@ -33,7 +33,7 @@ function SectionTitle({ eyebrow, title, children }: { eyebrow?: string; title: R
 }
 
 export const btnPrimary =
-  'inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-semibold text-white shadow-[0_8px_24px_-8px_rgba(71,87,236,0.7)] transition hover:bg-primary-press active:scale-[0.98]'
+  'inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-semibold text-white shadow-[0_8px_24px_-8px_rgba(124,92,255,0.7)] transition hover:bg-primary-press active:scale-[0.98]'
 
 export function LandingNav() {
   return (
@@ -66,9 +66,9 @@ export function Hero() {
     <section className="relative overflow-hidden">
       <Container className="grid items-center gap-14 pt-14 pb-16 lg:grid-cols-[1.1fr_1fr] lg:pt-24 lg:pb-24">
         <div className="anim-fade-up text-center lg:text-left">
-          <Eyebrow>per chi pensa di sapere tutto ✎</Eyebrow>
+          <Eyebrow>per chi pensa di sapere tutto</Eyebrow>
           <h1 className="mt-3 font-display text-5xl leading-[1.02] font-extrabold tracking-[-0.03em] text-balance sm:text-6xl lg:text-7xl">
-            Quanto ne sai, <span className="marker anim-marker">davvero</span>?
+            Quanto ne sai, <span className="hl">davvero</span>?
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted lg:mx-0">
             Bandiere, capitali, sagome dei paesi, loghi, animali, storia, scienza, sport e molto altro. Oltre {fmt(total())}{' '}
@@ -91,7 +91,7 @@ export function Hero() {
           </ul>
         </div>
         <div className="anim-fade-up relative [--d:0.15s]">
-          <p className="absolute -top-8 right-4 hidden rotate-[-4deg] font-hand text-xl text-muted lg:block">gioca da solo, guarda ↓</p>
+          <p className="absolute -top-8 right-4 hidden text-sm text-muted lg:block">gioca da solo, guarda ↓</p>
           <DemoQuestion />
         </div>
       </Container>
@@ -105,7 +105,7 @@ function CategoryStrip() {
   return (
     <div className="border-y border-line bg-elev/50 py-4">
       <Container className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted">
-        <span className="font-hand text-xl text-primary-2">si gioca con →</span>
+        <span className="eyebrow">si gioca con →</span>
         {CATEGORIES.slice(0, 10).map((c) => (
           <span key={c.id} className="inline-flex items-center gap-1.5">
             <span className="size-2 rounded-full" style={{ background: c.color }} aria-hidden="true" />
@@ -130,7 +130,7 @@ export function HowItWorks() {
         <SectionTitle
           title={
             <>
-              Tre mosse, <span className="scribble">zero noia</span>
+              Tre mosse, <span className="hl">zero noia</span>
             </>
           }
         />
@@ -138,7 +138,7 @@ export function HowItWorks() {
           <span className="absolute top-10 right-[16%] left-[16%] hidden border-t-2 border-dashed border-line-strong md:block" aria-hidden="true" />
           {steps.map((s, i) => (
             <li key={s.title} className="relative text-center">
-              <span className="relative mx-auto grid size-20 place-items-center rounded-full border-2 border-primary bg-bg font-hand text-4xl text-primary-2">
+              <span className="relative mx-auto grid size-20 place-items-center rounded-full border-2 border-primary bg-bg font-display text-3xl font-extrabold text-primary-2">
                 {i + 1}
               </span>
               <h3 className="mt-5 font-display text-2xl font-extrabold">{s.title}</h3>
@@ -159,7 +159,7 @@ export function CategoryShowcase() {
           eyebrow={`${CATEGORIES.length} categorie`}
           title={
             <>
-              Indovina <span className="marker marker-green">davvero tutto</span>
+              Indovina <span className="hl hl-green">davvero tutto</span>
             </>
           }
         >
@@ -211,7 +211,7 @@ export function Features() {
         <SectionTitle
           title={
             <>
-              Tutto quello che serve per <span className="marker marker-blue">non smettere più</span>.
+              Tutto quello che serve per <span className="hl hl-blue">non smettere più</span>.
             </>
           }
         />
@@ -251,9 +251,9 @@ export function DailyTeaser() {
       <Container>
         <div className="grid items-center gap-10 rounded-[2rem] border border-line bg-elev p-8 sm:p-12 md:grid-cols-[1.3fr_1fr]">
           <div>
-            <Eyebrow>ogni giorno a mezzanotte ✦</Eyebrow>
+            <Eyebrow>ogni giorno a mezzanotte</Eyebrow>
             <h2 className="mt-1 font-display text-4xl font-extrabold text-balance">
-              La <span className="marker">sfida del giorno</span>, uguale per tutti.
+              La <span className="hl hl-fire">sfida del giorno</span>, uguale per tutti.
             </h2>
             <p className="mt-4 max-w-lg text-muted">
               Dieci domande, dalla più facile alla più difficile, una sola possibilità. Poi confronta il punteggio con gli amici: si
@@ -263,15 +263,15 @@ export function DailyTeaser() {
               Gioca la sfida di oggi
             </Link>
           </div>
-          <div className="paper rotate-[1.5deg] rounded-2xl border border-line p-6 pl-14 shadow-card">
-            <p className="font-hand text-xl text-primary-2">Indovina Tutto — Sfida del giorno</p>
+          <div className="rounded-2xl border border-line bg-surface p-6 shadow-card">
+            <p className="eyebrow">Indovina Tutto — Sfida del giorno</p>
             <div className="mt-3 flex flex-wrap gap-1.5" aria-label="Esempio di risultato: 8 su 10">
               {squares.map((ok, i) => (
                 <span key={i} className={`size-7 rounded-md ${ok ? 'bg-ok' : 'bg-bad'}`} />
               ))}
             </div>
             <p className="mt-3 font-display text-4xl font-extrabold">8/10</p>
-            <p className="font-hand text-lg text-muted">batti questo, se ci riesci</p>
+            <p className="text-sm text-muted">batti questo, se ci riesci</p>
           </div>
         </div>
       </Container>
@@ -294,7 +294,7 @@ export function GemsExplainer() {
         <SectionTitle
           title={
             <>
-              Gratis. <span className="marker">Davvero.</span>
+              Gratis. <span className="hl hl-fire">Davvero.</span>
             </>
           }
         >
@@ -394,7 +394,7 @@ export function FinalCta() {
       <Container>
         <Eyebrow>la prossima domanda non aspetta</Eyebrow>
         <h2 className="mt-2 font-display text-4xl font-extrabold text-balance sm:text-6xl">
-          Inizia a giocare <span className="rounded-lg bg-[#ffe14d] px-2 text-[#1a1916]">adesso</span>.
+          Inizia a giocare <span className="hl hl-fire">adesso</span>.
         </h2>
         <Link href="/app/" className={`${btnPrimary} mt-8 h-14 px-10 text-lg`}>
           Gioca gratis
@@ -415,7 +415,7 @@ export function Footer() {
             <span className="font-display text-lg font-extrabold text-ink">Indovina Tutto</span>
           </Link>
           <p className="mt-3 max-w-xs">Il quiz su tutto: bandiere, capitali, loghi, animali, storia, scienza e molto altro.</p>
-          <p className="mt-3 font-hand text-xl text-primary-2">un gioco carlarcade ✦</p>
+          <p className="mt-3 eyebrow">un gioco carlarcade</p>
         </div>
         <div>
           <p className="font-semibold text-ink">Gioco</p>

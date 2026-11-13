@@ -13,7 +13,7 @@ export function applyTheme(theme: Theme) {
   const resolved = resolveTheme(theme)
   document.documentElement.dataset.theme = resolved
   const meta = document.querySelector('meta[name="theme-color"]')
-  if (meta) meta.setAttribute('content', resolved === 'light' ? '#FAF8F3' : '#131210')
+  if (meta) meta.setAttribute('content', resolved === 'light' ? '#F6F5FF' : '#0B0F2A')
 }
 
 /**

@@ -61,7 +61,7 @@ const ICONS: Record<string, LucideIcon> = {
   Users,
 }
 
-export const MIX = { name: 'Mix Tutto', color: '#4757EC' }
+export const MIX = { name: 'Mix Tutto', color: '#7C5CFF' }
 
 export function sourceMeta(source: Source): { name: string; color: string; Icon: LucideIcon } {
   if (source === 'mix') return { ...MIX, Icon: Shuffle }

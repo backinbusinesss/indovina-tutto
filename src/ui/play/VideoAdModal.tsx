@@ -36,7 +36,7 @@ export function VideoAdModal({ placement, onDone }: AdModalProps) {
         className="pointer-events-none absolute -inset-1/2"
         style={{
           background:
-            'radial-gradient(40rem 30rem at 20% 20%, rgba(71,87,236,0.45), transparent 60%), radial-gradient(40rem 30rem at 80% 80%, rgba(255,122,26,0.35), transparent 60%)',
+            'radial-gradient(40rem 30rem at 20% 20%, rgba(124,92,255,0.45), transparent 60%), radial-gradient(40rem 30rem at 80% 80%, rgba(255,122,26,0.35), transparent 60%)',
         }}
         animate={{ rotate: [0, 8, 0], scale: [1, 1.08, 1] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
