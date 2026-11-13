@@ -6,6 +6,16 @@ import { assetUrl } from '@/lib/asset'
 import { THEME_BOOT_SCRIPT } from '@/lib/theme'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://backinbusinesss.github.io'),
+  openGraph: {
+    type: 'website',
+    locale: 'it_IT',
+    siteName: 'Indovina Tutto',
+    title: 'Indovina Tutto — Quanto ne sai, davvero?',
+    description: 'Bandiere, capitali, sagome dei paesi, loghi e molto altro. Allunga la streak, sfida gli amici.',
+    images: [{ url: assetUrl('og.png'), width: 1200, height: 630, alt: 'Indovina Tutto' }],
+  },
+  twitter: { card: 'summary_large_image', images: [assetUrl('og.png')] },
   title: {
     default: 'Indovina Tutto — il quiz su tutto',
     template: '%s · Indovina Tutto',

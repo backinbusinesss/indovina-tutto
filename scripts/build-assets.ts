@@ -191,6 +191,37 @@ async function buildBrand() {
   console.log('icone: ok')
 }
 
+// ---------------------------------------------------------------- anteprima social (Open Graph)
+async function buildOg() {
+  const flagCodes = ['it', 'br', 'jp', 'fr', 'ca', 'za', 'kr', 'mx']
+  const flagImgs = flagCodes
+    .map((c, i) => {
+      const data = readFileSync(pub('flags', `${c}.svg`)).toString('base64')
+      const x = 700 + (i % 4) * 118
+      const y = 330 + Math.floor(i / 4) * 92
+      return `<g transform="translate(${x},${y}) rotate(${(i % 2 ? 1 : -1) * 4})"><rect x="-3" y="-3" width="106" height="81" rx="12" fill="#fff" opacity="0.9"/><image href="data:image/svg+xml;base64,${data}" width="100" height="75" preserveAspectRatio="xMidYMid slice" clip-path="inset(0 round 10px)"/></g>`
+    })
+    .join('')
+  const mark = LOGO_MARK
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g1" cx="0.1" cy="0" r="0.9"><stop offset="0" stop-color="#7C5CFF" stop-opacity="0.55"/><stop offset="1" stop-color="#0B0F2A" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g2" cx="1" cy="1" r="0.8"><stop offset="0" stop-color="#FF7A1A" stop-opacity="0.35"/><stop offset="1" stop-color="#0B0F2A" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0B0F2A"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+  <g transform="translate(80,90) scale(0.32)"><rect width="512" height="512" rx="116" fill="url(#bg)"/>${mark}</g>
+  <text x="80" y="330" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="88" fill="#F2F4FF">Indovina</text>
+  <text x="80" y="420" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="88" fill="#9B82FF">Tutto</text>
+  <text x="80" y="490" font-family="Arial, sans-serif" font-weight="700" font-size="34" fill="#FFC83D">Quanto ne sai, davvero?</text>
+  <text x="80" y="545" font-family="Arial, sans-serif" font-size="26" fill="#A3A9D1">Bandiere · Capitali · Sagome · Loghi · e molto altro</text>
+  ${flagImgs}
+</svg>`
+  write(pub('og.png'), await sharp(Buffer.from(svg)).png().toBuffer())
+  console.log('anteprima social: ok')
+}
+
 // ---------------------------------------------------------------- fogli di controllo
 async function contactSheet(file: string, items: { label: string; svg: string }[], cell = 120) {
   const cols = 12
@@ -215,6 +246,7 @@ async function main() {
   buildLogos()
   const shapes = buildShapes()
   await buildBrand()
+  await buildOg()
   await contactSheet(
     out('shapes-preview.png'),
     shapes.map((iso) => ({ label: iso, svg: readFileSync(pub('shapes', `${iso.toLowerCase()}.svg`), 'utf8') })),
