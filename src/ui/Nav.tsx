@@ -21,10 +21,14 @@ export function TopBar() {
       <Link href="/app/" aria-label="Indovina Tutto, home dell'app">
         <Logo />
       </Link>
-      <div className={cx('flex items-center gap-2 transition-opacity', hydrated ? 'opacity-100' : 'opacity-0')}>
-        <DayStreak value={dayStreak} />
-        <GemCounter value={gems} href="/app/negozio/" />
-      </div>
+      {hydrated ? (
+        <div className="flex items-center gap-2">
+          <DayStreak value={dayStreak} />
+          <GemCounter value={gems} href="/app/negozio/" />
+        </div>
+      ) : (
+        <div className="h-9 w-36" aria-hidden="true" />
+      )}
     </header>
   )
 }

@@ -3,12 +3,14 @@
 import { usePathname } from 'next/navigation'
 import { type ReactNode, useEffect } from 'react'
 import { applyTheme } from '@/lib/theme'
+import { AdsProvider } from '@/providers/ads'
+import { PaymentsProvider } from '@/providers/payments'
 import { useProfile } from '@/store/profile'
 import { useHydrated } from '@/store/useHydrated'
-import { AdsProvider } from '@/providers/ads'
 import { GemBurstLayer } from './GemBurstLayer'
-import { VideoAdModal } from './play/VideoAdModal'
 import { BottomNav, normalizePath, TopBar } from './Nav'
+import { VideoAdModal } from './play/VideoAdModal'
+import { CheckoutDemoModal } from './shop/CheckoutDemoModal'
 
 /** Schermate "a tutto schermo", senza barra in alto né menu: la partita e la sfida. */
 const IMMERSIVE = ['/app/gioca', '/app/sfida']
@@ -30,14 +32,16 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <AdsProvider Modal={VideoAdModal}>
-    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4">
-      {!immersive && <TopBar />}
-      <main className={immersive ? 'flex flex-1 flex-col' : 'flex-1 pb-28'}>
-        {hydrated ? children : <ShellSkeleton />}
-      </main>
-      {!immersive && <BottomNav />}
-      <GemBurstLayer />
-    </div>
+      <PaymentsProvider Checkout={CheckoutDemoModal}>
+        <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4">
+          {!immersive && <TopBar />}
+          <main className={immersive ? 'flex flex-1 flex-col' : 'flex-1 pb-28'}>
+            {hydrated ? children : <ShellSkeleton />}
+          </main>
+          {!immersive && <BottomNav />}
+          <GemBurstLayer />
+        </div>
+      </PaymentsProvider>
     </AdsProvider>
   )
 }

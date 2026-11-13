@@ -1,9 +1,8 @@
-import { useId } from 'react'
 import { cx } from '@/lib/cx'
 
 /** Il simbolo dell'app: un punto interrogativo dorato su un globo. */
 export function LogoMark({ className = 'size-9' }: { className?: string }) {
-  const id = useId()
+  const id = 'it-logo-'
   return (
     <svg viewBox="0 0 512 512" className={className} aria-hidden="true">
       <defs>

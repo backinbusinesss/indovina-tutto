@@ -1,12 +1,13 @@
 'use client'
 
 import { Sheet } from '../Overlay'
+import { Shop } from './Shop'
 
-/** Negozio sopra la partita (il contenuto vero arriva con il negozio). */
+/** Negozio sopra la partita: dopo un acquisto si chiude e si torna a "Salva la streak!". */
 export function ShopSheet({ open, onClose }: { open: boolean; onClose(): void }) {
   return (
-    <Sheet open={open} title="Negozio" onClose={onClose}>
-      <p className="py-8 text-center text-muted">Negozio in arrivo</p>
+    <Sheet open={open} title="Ti servono gemme" onClose={onClose}>
+      <Shop onPurchased={onClose} />
     </Sheet>
   )
 }

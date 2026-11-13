@@ -1,7 +1,6 @@
-import { useId } from 'react'
-
 export function GemIcon({ className = 'size-5' }: { className?: string }) {
-  const id = useId()
+  // id fisso: i gradienti sono identici in ogni icona e così server e browser coincidono
+  const id = 'it-gem-grad'
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <defs>
@@ -25,7 +24,7 @@ export function GemIcon({ className = 'size-5' }: { className?: string }) {
 }
 
 export function FlameIcon({ className = 'size-5', lit = true }: { className?: string; lit?: boolean }) {
-  const id = useId()
+  const id = lit ? 'it-flame-lit' : 'it-flame-off'
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <defs>
